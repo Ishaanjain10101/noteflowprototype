@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteFlow</title>
+    <link rel="stylesheet" href="/stylesheets/emailVerify.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <div class="container-login">
+        <div class="ball"><i class="fa-solid fa-lock" id="lock"></i></div>
+        <div id="heading">
+            Verify your Email
+        </div>
+        <div style="color: grey;">Verification Code will be sent to your email</div>
+        <div style="color: grey;margin: 0 0 20px 0;"></div>
+
+        <div style="position: relative;height: 40px; width: 100%;">
+            <div style="position: absolute;left: 20px;">
+                Code
+            </div>
+        </div>
+        <div style="position: relative;">
+            <div id="container-code-input">
+                <input type="text" maxlength="1" class="code-input">
+                <input type="text" maxlength="1" class="code-input">
+                <input type="text" maxlength="1" class="code-input">
+                <input type="text" maxlength="1" class="code-input">
+                <input type="text" maxlength="1" class="code-input">
+                <input type="text" maxlength="1" class="code-input" id="lastinput" style="position: relative;">
+            </div>
+        </div>
+        <button id="button-verify">Verify</button>
+        
+    </div>
+    <dialog id="exhausted" style="margin: auto;padding: 10px;">You have exhausted all your verification attempts</dialog>
+</body>
+</html>
+<script src="/scripts/verify.js"></script>

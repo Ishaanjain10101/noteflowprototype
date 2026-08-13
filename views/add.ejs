@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Flow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/add.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%-include("partials/loggedin")%>
+    <div>
+        <div id="name">Add Note</div>
+        <input type="text" id="title" placeholder="Title">
+        <textarea name="content" id="content" placeholder="Content"></textarea>
+        <div>
+            <button class="outside-element" id="save"><i class="fa-regular fa-floppy-disk"></i> Save</button>
+            <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  id="star" fill="none" stroke="#12305c" stroke-width="1.5" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+        </div>
+    </div>
+    <dialog id="incomplete-data">Please Fill The Content And The Title</dialog>
+    <script src="/scripts/add.js"></script>
+</body>
+</html>

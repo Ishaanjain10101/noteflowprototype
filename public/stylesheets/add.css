@@ -1,0 +1,74 @@
+div:has(#title){
+    position: absolute;
+    top:80px;
+    left: 250px;
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+div > *{
+    border-radius: 5px;
+    width: calc(100% - 50px);
+}
+#name{
+    width: calc(100% - 25px);
+}
+#title{
+    padding: 10px;
+    margin: 0;
+}
+#content{
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px;
+    resize: none;
+    height: 400px;
+    overflow: auto;
+}
+button > svg{
+    width: 40px;
+}
+button > svg path{
+    fill: rgb(219, 238, 254); 
+}
+div:has(> .outside-element){
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+}
+#save{
+    cursor: pointer;
+    background-color: rgb(80, 80, 193);
+    color: rgb(219, 238, 254);
+    width: 100px;
+    padding: 10px;
+}
+#star{
+    cursor: pointer;
+    width: 30px;
+    position: absolute;
+    right: 120px;
+    top : 15px;
+}
+#incomplete-data{
+    margin: auto;
+    padding: 20px;
+    border: 1px black solid;
+    border-radius: 5px;
+    color: rgb(239, 84, 84);
+}
+#title,#content{
+    border: none;
+    background-color: rgb(216, 216, 216);
+    box-shadow: -3px -3px 2px rgb(141, 141, 141);
+}
+#title:focus,#content:focus{
+    outline-color:rgb(146, 145, 145);
+}

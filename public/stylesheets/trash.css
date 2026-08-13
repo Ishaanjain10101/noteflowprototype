@@ -1,0 +1,282 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Black Ops One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+body{ 
+    position: relative;
+}
+nav{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    padding: 30px;
+    border-bottom: 1px solid black;
+}
+
+nav > div{
+    display: inline;
+}
+.but{
+    text-decoration: none;
+}
+
+#getstarted,#login{
+    padding: 10px;
+    border: 1px solid white;
+    background-color: #4F46E5;
+    border-radius: 4px;
+}
+#login{
+    background-color: white;
+    border: 1px solid black;
+}
+
+
+#container-log{
+    display: flex;
+    align-items: center;
+    gap: 10px;    
+    position: absolute;
+    right: 10px;
+}
+#getstarted{
+    color: white;
+}
+
+#login:hover,#getstarted:hover{
+    animation: move 0.4s ease-in-out forwards 1 ;
+}
+#login:active{
+    color:#4F46E5;
+}
+
+@keyframes move {
+    100%{
+        transform: translateY(-2px);
+    }
+}
+
+#add{
+    cursor: pointer;
+}
+.option{
+    text-decoration: none;
+}
+.option > div{
+    display: flex;
+    padding: 20px;
+    border-radius: 10px;
+    gap:6px;
+}
+
+.container-sidebar{
+    z-index: 3;
+    width: 200px;
+    position: fixed;
+    top: 62px;
+    border-right: 1px solid black;
+    height:calc(100vh - 62px);
+}
+
+.temp{
+    background-color: #4F46E5;
+    width: 30px;
+    height: 30px;
+    margin-left: 300px;
+}
+
+.option:hover > div{
+    background-color:#c9c6f8;
+    color: #4F46E5;
+}
+
+.option:hover > i{
+    color:#4F46E5
+}
+
+#container-maincontent{
+    position:absolute;
+    z-index: 1;
+    top: 70px;
+    left: 250px;
+    width: calc(100% - 270px);
+    height: calc(100vh - 80px);
+}
+
+#heading{
+    font-size: 2em;
+    color:#0c0c4b;
+    position: absolute;
+    left: 0;
+    top:20px;
+}
+
+#sub-heading{
+    color:#83838b;
+    position: absolute;
+    left: 0;
+    top:70px;
+}
+#underline{
+    background-color: #4F46E5;
+    width: 200px;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    top: 100px;
+    border-radius: 4px;
+    corner-shape:circle;
+}
+
+#header{
+    position: relative;
+}
+
+.Note[data-form="grid"]{
+    width: 100%;
+    height: 100%;
+    border:1px solid black; 
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(177, 177, 177);
+}
+.Note[data-form="list"]{
+    width: 100%;
+    height: 200px;
+    border:1px solid black; 
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(177, 177, 177);
+}
+div:has( > .Note)[data-form="grid"]{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+}
+div:has( > .Note)[data-form="list"]{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+.title-note{
+    font-size: 2em;
+    margin: 10px;
+    color: #4F46E5;
+    overflow: hidden;
+    height: 40px;
+}
+.content-note{
+    color: #9b97de;
+    margin: 10px;
+    width: fit-content;
+    overflow: hidden;
+    height: 40px;
+}
+#view-more{
+    width: 90px;
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgb(108, 214, 108);
+}
+a:has(#view-more){
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: black;
+    text-decoration: none;
+}
+.outside-element{
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+}
+#last-deleted{
+    position: absolute;
+    left: 10px;
+    color: rgb(160, 158, 158);
+    bottom: 60px;
+}
+#updatedAt-note{
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    color: rgb(160, 158, 158);
+}
+#option-selection-grid-list{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    position: absolute;
+    background-color: #c9c6f8;
+    padding: 3px;
+    right: 0px;
+}
+#option-selection-grid-list > button{
+    all: unset;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#option-selection-grid-list > button[data-select = "true"]{
+    background-color:rgb(235, 235, 235)  ;
+}
+
+.dustbin{
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    color:rgb(71, 71, 71);
+}
+.dustbin > i{
+    cursor: pointer;
+}
+.recover{
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    color:rgb(71, 71, 71);
+}
+.recover > i{
+    cursor: pointer;
+}
+
+.confirmdialog{
+    margin:auto;
+    padding-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.confirmdialog > div{
+    padding: 20px;
+}
+.confirmdialog > button{
+    padding: 10px 20px;
+}
+#yes{
+    background-color: green;
+    margin-left: 20px;
+    cursor: pointer;
+}
+#no{
+    cursor: pointer;
+    float: right;
+    margin-right: 20px;
+    background-color: red;
+}
