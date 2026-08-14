@@ -89,8 +89,8 @@ verifyButton.addEventListener("click",async ()=>{
             code:code
         })
     });
-    if(response.status === 201){
-        window.location.href = "/login";
+    if(response.status === 200){
+        window.location.href = "/";
     }
     if(response.status === 429){
         document.getElementById("exhausted").showModal();
