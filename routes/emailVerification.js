@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/usermodel");
 const verificationCodeModel = require("../models/verification");
 const secret = process.env.JWT_SECRET;
+const path = require("path");
 
 const transpoter = nodemailer.createTransport({
     host:"smtp.gmail.com",
@@ -46,7 +47,7 @@ router.post("/verify/sendEmail",async (req,res)=>{
     try{
         const decoded = jwt.verify(veritoken,process.env.JWT_SECRET);
         const tempData = await verificationCodeModel.findOne({_id:decoded.id},{verificationCode:true,name:true,email:true,password:true});
-        let html = await fs.readFile("./templates/emailVerification.html" , "utf8");
+        let html = await fs.readFile(path.join(__dirname,"../templates/emailVerification.html") , "utf8");
         html = html.replace("{CODE}",String(tempData.verificationCode));
         
         await transpoter.sendMail({
