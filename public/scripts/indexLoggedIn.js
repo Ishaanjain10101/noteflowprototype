@@ -205,6 +205,6 @@ document.getElementById("logout").addEventListener("click", async ()=>{
         method:"POST"
     });
     if(response.ok){
-        location.reload();
+        window.location.href = "/";
     }
 })
