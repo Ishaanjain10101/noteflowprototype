@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Flow</title>
-    <link rel="stylesheet" href="/stylesheets/loginsignup.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/stylesheets/auth.css">
 </head>
 <body>
-    <div class="container-login">
-        <div class="ball"><i class="fa-solid fa-lock" id="lock"></i></div>
-        <div id="heading">
-            Welcome Back
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <a href="/"><i class="fa-solid fa-feather-pointed"></i> NoteFlow</a>
         </div>
-        <div style="color: grey;margin: 0 0 20px 0;">Log in to your account</div>
-            <div>
-                <div>
+        <div class="ball"><i class="fa-solid fa-lock" id="lock"></i></div>
+        <div id="heading">Welcome Back</div>
+        <div class="auth-subtitle">Log in to your account</div>
+        <div>
+            <div class="auth-field">
                 <label for="email-input">Email</label>
                 <input type="email" id="email-input" autocomplete="username" required>
             </div>
-            <div style="position: relative;">
+            <div class="auth-field auth-field-password">
                 <label for="password-input">Password</label>
                 <input type="password" id="password-input" autocomplete="current-password" required>
-                <i class="fa-solid fa-eye-slash" id="eye" style="position: absolute;right: 36px;bottom: 28px;z-index: 3;cursor: pointer;"></i>
+                <i class="fa-solid fa-eye-slash" id="eye"></i>
             </div>
         </div>
         <button id="button-login">Log in</button>
-        <div id="asking">Don't Have An Account ? <a href="/signup">Sign Up</a></div>
-        
+        <div id="asking">Don't have an account? <a href="/signup">Sign Up</a></div>
     </div>
-    <script src="/scripts/login.js"></script>
+</div>
+<script src="/scripts/login.js"></script>
 </body>
 </html>

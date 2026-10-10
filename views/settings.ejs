@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="stylesheet" href="/stylesheets/auth.css">
+</head>
+<body>
+    <%- include("partials/loggedin") %>
+    <div id="container-maincontent">
+        <div id="header">
+            <div id="heading">Settings</div>
+            <div id="underline"></div>
+        </div>
+
+        <div class="settings-wrapper">
+            <div class="settings-section">
+                <h3>Preferences</h3>
+                <div class="settings-row">
+                    <div class="setting-label">Default view</div>
+                    <div class="setting-value">Grid</div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Compact mode</div>
+                    <div class="toggle-switch"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Auto-save notes</div>
+                    <div class="toggle-switch active"></div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Appearance</h3>
+                <div class="settings-row">
+                    <div class="setting-label">Theme</div>
+                    <div class="setting-value">Light</div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Accent color</div>
+                    <div class="setting-value">Blue</div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Font size</div>
+                    <div class="setting-value">Medium</div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Notifications</h3>
+                <div class="settings-row">
+                    <div class="setting-label">Email notifications</div>
+                    <div class="toggle-switch"></div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Trash cleanup reminders</div>
+                    <div class="toggle-switch active"></div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Account</h3>
+                <div class="settings-row">
+                    <div class="setting-label">Change password</div>
+                    <div id="view-more">Change</div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Profile</div>
+                    <a href="/profile"><div id="view-more">View Profile</div></a>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Sign out</div>
+                    <button class="danger-btn" id="logout">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Flow</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/stylesheets/index.css">
-    <link rel="stylesheet" href="/stylesheets/viewMore.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="stylesheet" href="/stylesheets/editor.css">
 </head>
 <body>
-    <%-include("partials/loggedin")%>
-    <div id="container-note" data-id="<%=noteId%>">
-        <div id="name">View Note</div>
-        <input type="text" id="title" value="<%=title%>">
-        <textarea name="content" id="content"><%=content%></textarea>
+    <%- include("partials/loggedin") %>
+    <div class="editor-wrapper">
+        <div id="container-note" data-id="<%=noteId%>">
+            <div id="name">View Note</div>
+            <input type="text" id="title" value="<%=title%>" disabled>
+            <textarea name="content" id="content" disabled><%=content%></textarea>
+        </div>
     </div>
-    <dialog id="incomplete-data">Please Fill The Content And The Title</dialog>
+    <dialog id="incomplete-data">Please fill in both the title and the content</dialog>
     <script src="/scripts/viewMoreTrash.js"></script>
 </body>
 </html>

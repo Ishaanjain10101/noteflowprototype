@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Flow</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/stylesheets/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 <body>
-    <%- !signedIn ? include("partials/notLoggedin") : include("partials/loggedin")%>
+    <%- !signedIn ? include("partials/notLoggedin") : include("partials/loggedin") %>
 
-    <%- !signedIn ? "": include("partials/addNewNoteNotTrash")%>
+    <% if (!signedIn) { %>
+        <div class="hero">
+            <h1>Capture ideas.<br><span class="highlight">Organise thoughts.</span><br>Flow effortlessly.</h1>
+            <p>NoteFlow is a clean, simple notes app that helps you write, organise, and find your notes with ease.</p>
+            <div class="cta-row">
+                <a href="/signup" class="cta-primary">Get Started Free</a>
+                <a href="/login" class="cta-secondary">Login</a>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="feature-title">Quick Notes</div>
+                    <div class="feature-text">Jot down ideas in seconds</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="feature-title">Favourites</div>
+                    <div class="feature-text">Star important notes</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-thumbtack"></i></div>
+                    <div class="feature-title">Pinned</div>
+                    <div class="feature-text">Keep key notes on top</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="feature-title">Secure</div>
+                    <div class="feature-text">Your notes are private</div>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <%- include("partials/addNewNoteNotTrash") %>
+    <% } %>
+
     <script src="/scripts/indexLoggedIn.js"></script>
 </body>
 </html>

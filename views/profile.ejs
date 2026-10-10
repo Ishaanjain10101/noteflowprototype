@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="stylesheet" href="/stylesheets/auth.css">
+</head>
+<body>
+    <%- include("partials/loggedin") %>
+    <div id="container-maincontent">
+        <div id="header">
+            <div id="heading">Profile</div>
+            <div id="underline"></div>
+        </div>
+
+        <div class="profile-wrapper">
+            <div class="profile-header">
+                <div class="profile-avatar">N</div>
+                <div class="profile-info">
+                    <h2>Your Account</h2>
+                    <p>Manage your personal information</p>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="profile-stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Notes</div>
+                </div>
+                <div class="profile-stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Favourites</div>
+                </div>
+                <div class="profile-stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Pinned</div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Account Information</h3>
+                <div class="settings-row">
+                    <div class="setting-label">Name</div>
+                    <div class="setting-value">Your name</div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Email</div>
+                    <div class="setting-value">your@email.com</div>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Member Since</div>
+                    <div class="setting-value">Today</div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Quick Actions</h3>
+                <div class="settings-row">
+                    <div class="setting-label">All Notes</div>
+                    <a href="/"><div id="view-more">View</div></a>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Add New Note</div>
+                    <a href="/add"><div id="view-more">Create</div></a>
+                </div>
+                <div class="settings-row">
+                    <div class="setting-label">Settings</div>
+                    <a href="/settings"><div id="view-more">Manage</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

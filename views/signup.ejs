@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Flow</title>
-    <link rel="stylesheet" href="/stylesheets/loginsignup.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/stylesheets/auth.css">
 </head>
 <body>
-    
-    <div class="container-signup">
-        <div id="heading">
-            Sign Up
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <a href="/"><i class="fa-solid fa-feather-pointed"></i> NoteFlow</a>
         </div>
+        <div id="heading">Create Account</div>
+        <div class="auth-subtitle">Start capturing your ideas today</div>
         <div>
-            <label for="name-input" >Username:</label>
-            <input type="text" id="name-input">
+            <div class="auth-field">
+                <label for="name-input">Username</label>
+                <input type="text" id="name-input">
+            </div>
+            <div class="auth-field">
+                <label for="email-input">Email</label>
+                <input type="email" id="email-input" autocomplete="username" required>
+            </div>
+            <div class="auth-field auth-field-password">
+                <label for="password-input">Password</label>
+                <input type="password" id="password-input" autocomplete="new-password" required>
+                <i class="fa-solid fa-eye-slash" id="eye"></i>
+            </div>
         </div>
-        <div>
-            <label for="email-input">Email: </label>
-            <input type="email" id="email-input" autocomplete="username" required>
-        </div>
-        <div style="position: relative;">
-            <label for="password-input">Password: </label>
-            <input type="password" id="password-input" autocomplete="new-password" required>
-            <i class="fa-solid fa-eye-slash" id="eye" style="position: absolute;right: 36px;bottom:28px;z-index: 3;cursor: pointer;"></i>
-
-        </div>
-        <div>
-            <button id="button-signup">Sign Up</button>
-        </div>
-        <div id="asking">Already Have An Account ? <a href="/login">Login</a></div>
+        <button id="button-signup">Sign Up</button>
+        <div id="asking">Already have an account? <a href="/login">Login</a></div>
     </div>
-    <script src="/scripts/signup.js"></script>
+</div>
+<script src="/scripts/signup.js"></script>
 </body>
 </html>
