@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
+const fs = require("fs");
 
 const signup = require("./routes/signup");
 const login = require("./routes/login");
@@ -29,6 +30,26 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"public")));
 app.set("view engine","ejs");
+
+app.get("/scripts/:filename", (req, res) => {
+    const filePath = path.join(__dirname, "public", "scripts", req.params.filename);
+    if (fs.existsSync(filePath)) {
+        res.type("application/javascript");
+        res.send(fs.readFileSync(filePath, "utf8"));
+    } else {
+        res.status(404).send("Not found");
+    }
+});
+
+app.get("/stylesheets/:filename", (req, res) => {
+    const filePath = path.join(__dirname, "public", "stylesheets", req.params.filename);
+    if (fs.existsSync(filePath)) {
+        res.type("text/css");
+        res.send(fs.readFileSync(filePath, "utf8"));
+    } else {
+        res.status(404).send("Not found");
+    }
+});
 
 app.use(emailVerify);
 app.use(signout);
