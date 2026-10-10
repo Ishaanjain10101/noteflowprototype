@@ -1,0 +1,174 @@
+<style>
+/* ===== Add / ViewMore / ViewMoreTrash Pages ===== */
+.editor-wrapper {
+  margin-left: 240px;
+  padding: 32px 40px;
+  max-width: 800px;
+}
+
+#name {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+#title {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--neutral-900);
+  background: var(--neutral-0);
+  margin-bottom: 16px;
+  transition: all var(--transition-fast);
+}
+
+#title:focus {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-50);
+}
+
+#title:disabled {
+  background: var(--neutral-50);
+  color: var(--neutral-700);
+  cursor: default;
+}
+
+#content {
+  width: 100%;
+  min-height: 400px;
+  padding: 18px;
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--neutral-800);
+  background: var(--neutral-0);
+  resize: vertical;
+  transition: all var(--transition-fast);
+}
+
+#content:focus {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-50);
+}
+
+#content:disabled {
+  background: var(--neutral-50);
+  color: var(--neutral-700);
+  cursor: default;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.outside-element {
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#save {
+  background: var(--primary-600);
+  color: var(--neutral-0);
+}
+
+#save:hover {
+  background: var(--primary-700);
+  box-shadow: var(--shadow-sm);
+}
+
+#save:active {
+  transform: scale(0.97);
+}
+
+#edit {
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+}
+
+#edit:hover {
+  background: var(--neutral-200);
+}
+
+#update {
+  background: var(--primary-600);
+  color: var(--neutral-0);
+}
+
+#update:hover {
+  background: var(--primary-700);
+  box-shadow: var(--shadow-sm);
+}
+
+#update:disabled {
+  background: var(--neutral-300);
+  cursor: default;
+}
+
+#update:disabled:hover {
+  background: var(--neutral-300);
+  box-shadow: none;
+}
+
+#star {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+#star:hover {
+  transform: scale(1.15);
+}
+
+#container-note {
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+#container-note .editor-actions {
+  padding-top: 20px;
+  border-top: 1px solid var(--neutral-100);
+}
+
+#incomplete-data {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--warning-500);
+  text-align: center;
+}
+
+#incomplete-data::backdrop {
+  background: rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .editor-wrapper {
+    margin-left: 64px;
+    padding: 20px;
+  }
+  #content {
+    min-height: 300px;
+  }
+}
+</style>
