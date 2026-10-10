@@ -81,9 +81,26 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
     })
 })
 
+app.get("/profile",auth,async(req,res)=>{
+    res.render("profile",{
+        signedIn : req.signedIn,
+        title:"Profile",
+        userId:req.userId
+    })
+})
 
+app.get("/settings",auth,async(req,res)=>{
+    res.render("settings",{
+        signedIn : req.signedIn,
+        title:"Settings",
+        userId:req.userId
+    })
+})
 
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(4000,()=>{
+        console.log("Server Started");
+    });
+}
 
-app.listen(4000,()=>{
-    console.log("Server Started");
-});
+module.exports = app;
