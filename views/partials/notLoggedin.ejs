@@ -1,35 +1,14 @@
 <nav>
-    <img src="/images/logo.png" style="width: 130px;position:absolute;left :0">
-    
-    <div id ="container-log">
-        <a href="/login" class="but"> 
-            <div id="login">
-                Login
-            </div>
+    <div class="nav-logo">
+        <i class="fa-solid fa-feather-pointed"></i>
+        <span>NoteFlow</span>
+    </div>
+    <div id="container-log">
+        <a href="/login" class="but">
+            <div id="login">Login</div>
         </a>
         <a href="/signup" class="but">
-            <div id="getstarted">
-                Get Started 
-            </div>
+            <div id="getstarted">Get Started</div>
         </a>
     </div>
 </nav>
-<style>
-    nav{
-        position: relative;
-        width: calc(100% - 60px);
-        top: 0;
-        z-index: 3;
-        display: flex;
-        background-color: white;
-        align-items: center;
-        padding: 30px;
-        border-bottom: 1px solid black;
-    }
-</style>
-<script>
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-    });
-
-</script>

@@ -1,72 +1,77 @@
-<nav>
-    <img src="/images/logo.png" style="width: 130px;position:absolute;left :0">
-    <button id="logout" style="padding: 10px;position:absolute;right :70px;background-color:rgb(128, 119, 226);cursor: pointer;">Sign Out</button>
-</nav>
-<dialog id="signout-dialog">
-    A
-</dialog>
-<div class="container-sidebar" >
+<div class="container-sidebar">
+    <div class="logo">
+        <i class="fa-solid fa-feather-pointed"></i>
+        <span>NoteFlow</span>
+    </div>
     <a href="/" class="option">
         <div id="home">
-            <i class="fa-sharp-duotone fa-regular fa-note-sticky"></i>
-            <div>
-                All Notes
-            </div>
+            <i class="fa-regular fa-note-sticky"></i>
+            <div>All Notes</div>
         </div>
     </a>
     <a href="/add" class="option">
         <div id="add">
             <i class="fa-solid fa-plus"></i>
-            <div>
-                Add Note
-            </div>
+            <div>Add Note</div>
         </div>
     </a>
     <a href="/fav" class="option">
         <div id="fav">
             <i class="fa-regular fa-star"></i>
-            <div>
-                Favourites
-            </div>
+            <div>Favourites</div>
         </div>
     </a>
     <a href="/pinned" class="option">
         <div id="pinned">
             <i class="fa-solid fa-thumbtack"></i>
-            <div>
-                Pinned
-            </div>
+            <div>Pinned</div>
         </div>
     </a>
     <a href="/trash" class="option">
         <div id="trash">
             <i class="fa-solid fa-trash-can"></i>
-            <div>
-                Trash
-            </div>
+            <div>Trash</div>
         </div>
     </a>
-    <img src="/images/45adc340-db82-456a-92f6-09a7389ec335.png" style="width:calc( 100% - 10px);position: absolute;bottom: 50px;left: 5px;" alt="Capture Ideas.Organise Thoughts.Flow Effortlessy.">
+    <a href="/profile" class="option">
+        <div id="profile-link">
+            <i class="fa-regular fa-user"></i>
+            <div>Profile</div>
+        </div>
+    </a>
+    <a href="/settings" class="option">
+        <div id="settings-link">
+            <i class="fa-solid fa-gear"></i>
+            <div>Settings</div>
+        </div>
+    </a>
+    <div class="sidebar-footer">
+        <div class="tagline">Capture ideas. Organise thoughts. Flow effortlessly.</div>
+    </div>
 </div>
 
 <script>
-    
-    
-    switch(window.location.pathname){
+    switch (window.location.pathname) {
         case "/":
-            document.querySelector("#home").style.backgroundColor = "#c9c6f8";
+            document.querySelector("#home").classList.add("active");
             break;
         case "/add":
-            document.querySelector("#add").style.backgroundColor = "#c9c6f8";
+            document.querySelector("#add").classList.add("active");
             break;
         case "/fav":
-            document.querySelector("#fav").style.backgroundColor = "#c9c6f8";
+            document.querySelector("#fav").classList.add("active");
             break;
         case "/pinned":
-            document.querySelector("#pinned").style.backgroundColor = "#c9c6f8";
+            document.querySelector("#pinned").classList.add("active");
             break;
         case "/trash":
-            document.querySelector("#trash").style.backgroundColor = "#c9c6f8";
+            document.querySelector("#trash").classList.add("active");
+            break;
+        case "/profile":
+            document.querySelector("#profile-link").classList.add("active");
+            break;
+        case "/settings":
+            document.querySelector("#settings-link").classList.add("active");
             break;
     }
 </script>
