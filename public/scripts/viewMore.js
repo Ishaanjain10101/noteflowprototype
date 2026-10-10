@@ -7,35 +7,26 @@ title.disabled = true;
 content.disabled = true;
 update.disabled = true;
 
-edit.addEventListener("click",()=>{
+edit.addEventListener("click", () => {
     title.disabled = false;
     content.disabled = false;
     update.disabled = false;
-})
+    title.focus();
+});
 
-update.addEventListener("click",async ()=>{
+update.addEventListener("click", async () => {
     const t = title.value;
     const c = content.value;
     const containerNote = document.getElementById("container-note");
     const noteId = containerNote.getAttribute("data-id");
-    const response = await fetch(`/note/updateData/${noteId}`,{
-        method:"PATCH",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            title:t,
-            content:c
-        })
-    })
-
-    if(response.status === 200){
+    const response = await fetch(`/note/updateData/${noteId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: t, content: c })
+    });
+    if (response.status === 200) {
         title.disabled = true;
         content.disabled = true;
         update.disabled = true;
     }
-});
-
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
 });
