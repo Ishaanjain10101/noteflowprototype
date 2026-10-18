@@ -14,7 +14,7 @@
 
         <div class="profile-wrapper">
             <div class="profile-header">
-                <div class="profile-avatar">N</div>
+                <div class="profile-avatar"><%-toUpperCase(name.slice(0,1))%></div>
                 <div class="profile-info">
                     <h2>Your Account</h2>
                     <p>Manage your personal information</p>
@@ -40,11 +40,11 @@
                 <h3>Account Information</h3>
                 <div class="settings-row">
                     <div class="setting-label">Name</div>
-                    <div class="setting-value">Your name</div>
+                    <div class="setting-value"><%- name%></div>
                 </div>
                 <div class="settings-row">
                     <div class="setting-label">Email</div>
-                    <div class="setting-value">your@email.com</div>
+                    <div class="setting-value"><%- email%></div>
                 </div>
                 <div class="settings-row">
                     <div class="setting-label">Member Since</div>
