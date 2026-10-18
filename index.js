@@ -103,9 +103,12 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
 })
 
 app.get("/profile",auth,async(req,res)=>{
+    const user = await NoteModel.find({userId:req.userId},{email:true,_id:false,name:true});
     res.render("profile",{
         signedIn : req.signedIn,
         title:"Profile",
+        email:user.email,
+        name:user.name,
         userId:req.userId
     })
 })
