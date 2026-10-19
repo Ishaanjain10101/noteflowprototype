@@ -27,7 +27,7 @@
         </button>
     </div>
 
-    <div id="form" data-form="grid">
+    <div id="form" data-form="grid" class="<%= notes.length === 0 ? 'empty-form' : '' %>">
         <%if(notes.length === 0){%>
             <div class="empty-state">
                 <div class="empty-icon"><i class="fa-regular fa-note-sticky"></i></div>

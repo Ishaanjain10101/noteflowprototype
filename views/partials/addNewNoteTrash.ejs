@@ -28,7 +28,7 @@
         </button>
     </div>
 
-    <div id="form" data-form="grid">
+    <div id="form" data-form="grid" class="<%= notes.length === 0 ? 'empty-form' : '' %>">
         <%if(notes.length === 0){%>
             <div class="empty-state">
                 <div class="empty-icon"><i class="fa-solid fa-trash-can"></i></div>
@@ -50,11 +50,13 @@
                 <a href="/note/trash/<%=note._id%>">
                     <div id="view-more">View More</div>
                 </a>
-                <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>" title="Delete Forever">
-                    <i class="fa-solid fa-trash-can"></i>
-                </div>
-                <div class="recover recover-icon" data-id="<%=note._id%>" id="recover-<%=note._id%>" title="Recover">
-                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                <div class="trash-actions">
+                    <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>" title="Delete Forever">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                    <div class="recover recover-icon" data-id="<%=note._id%>" id="recover-<%=note._id%>" title="Recover">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </div>
                 </div>
             </div>
             <dialog id="<%-note._id%>" class="confirmdialog">

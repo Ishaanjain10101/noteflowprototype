@@ -420,10 +420,27 @@ input, textarea {
   color: var(--success-500);
 }
 
+.trash-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.Note[data-form="list"] .trash-actions {
+  margin-top: 0;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 /* ===== Confirm Dialog ===== */
 .confirmdialog {
   border: none;
-  margin:auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-lg);
@@ -528,6 +545,17 @@ input, textarea {
 .empty-state .empty-text {
   font-size: 14px;
   color: var(--neutral-400);
+}
+
+.empty-form {
+  min-height: calc(100vh - 220px);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-form .empty-state {
+  padding: 20px;
 }
 
 /* ===== Responsive ===== */
