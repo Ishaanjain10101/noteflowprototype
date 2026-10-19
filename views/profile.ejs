@@ -48,7 +48,7 @@
                 </div>
                 <div class="settings-row">
                     <div class="setting-label">Member Since</div>
-                    <div class="setting-value">Today</div>
+                    <div class="setting-value"><%- (new Date(createdAt)).getDate() ,(new Date(createdAt)).getYear()%></div>
                 </div>
             </div>
 
