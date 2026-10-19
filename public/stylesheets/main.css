@@ -423,6 +423,7 @@ input, textarea {
 /* ===== Confirm Dialog ===== */
 .confirmdialog {
   border: none;
+  margin:auto;
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-lg);
