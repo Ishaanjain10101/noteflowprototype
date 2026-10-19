@@ -105,11 +105,17 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
 
 app.get("/profile",auth,async(req,res)=>{
     const user = await userModel.findById(req.userId);
+    const favNumber = (await NoteModel.find({userId:req.userId , favourite:true , recentlyDeleted:false})).length;
+    const totalNumber = (await NoteModel.find({userId:req.userId , recentlyDeleted:false})).length;
+    const pinnedNumber = (await NoteModel.find({userId:req.userId , pinned:true , recentlyDeleted:false})).length;
     res.render("profile",{
         signedIn : req.signedIn,
         title:"Profile",
         email:user.email,
         name:user.name,
+        favNumber,
+        totalNumber,
+        pinnedNumber,
         userId:req.userId
     })
 })
