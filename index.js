@@ -116,6 +116,7 @@ app.get("/profile",auth,async(req,res)=>{
         favNumber,
         totalNumber,
         pinnedNumber,
+        createdAt:user.createdAt,
         userId:req.userId
     })
 })
