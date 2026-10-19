@@ -104,7 +104,7 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
 })
 
 app.get("/profile",auth,async(req,res)=>{
-    const user = await userModel.find({_id:req.userId});
+    const user = await userModel.findById(req.userId);
     res.render("profile",{
         signedIn : req.signedIn,
         title:"Profile",
