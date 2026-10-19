@@ -18,6 +18,7 @@ const signout = require("./routes/signout");
 const emailVerify = require("./routes/emailVerification");
 
 const NoteModel = require("./models/notes");
+const userModel = require("./models/usermodel");
 const cookieParser = require("cookie-parser");
 const deleteNote = require("./middlewares/deleteNote");
 const { auth } = require("./middlewares/auth");
@@ -103,7 +104,7 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
 })
 
 app.get("/profile",auth,async(req,res)=>{
-    const user = await NoteModel.find({userId:req.userId},{email:true,_id:false,name:true});
+    const user = await userModel.find({_id:req.userId},{email:true,_id:false,name:true});
     res.render("profile",{
         signedIn : req.signedIn,
         title:"Profile",
