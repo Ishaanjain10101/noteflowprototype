@@ -11,15 +11,14 @@
             <div id="heading">Settings</div>
             <div id="underline"></div>
         </div>
-
         <div class="settings-wrapper">
             <div class="settings-section">
                 <h3>Preferences</h3>
                 <div class="settings-row">
                     <div class="setting-label">Default view</div>
                     <div class="setting-value">
-                        <select name="toggle-view" id="toggle-view">
-                            <option value="Grid" selected>Grid</option>
+                        <select name="toggle-view" id="toggle-view" aria-label="Default view">
+                            <option value="Grid">Grid</option>
                             <option value="Row">Row</option>
                         </select>
                     </div>
@@ -27,29 +26,13 @@
                 <div class="settings-row">
                     <div class="setting-label">Theme</div>
                     <div class="setting-value">
-                        <select name="toggle-theme" id="toggle-theme">
-                            <option value="Dark" selected>Dark</option>
+                        <select name="toggle-theme" id="toggle-theme" aria-label="Theme">
                             <option value="Light">Light</option>
+                            <option value="Dark">Dark</option>
                         </select>
                     </div>
                 </div>
-               
             </div>
-
-
-
-            <div class="settings-section">
-                <h3>Notifications</h3>
-                <div class="settings-row">
-                    <div class="setting-label">Email notifications</div>
-                    <div class="toggle-switch"></div>
-                </div>
-                <div class="settings-row">
-                    <div class="setting-label">Trash cleanup reminders</div>
-                    <div class="toggle-switch active"></div>
-                </div>
-            </div>
-
             <div class="settings-section">
                 <h3>Account</h3>
                 <div class="settings-row">
@@ -69,22 +52,25 @@
     </div>
     <script>
         const viewSelect = document.getElementById("toggle-view");
-
-        viewSelect.addEventListener("change", () => {
-            const selectedView = viewSelect.value;
-
-            localStorage.setItem("viewStyle",selectedView);
-
-        });
-
         const themeSelect = document.getElementById("toggle-theme");
+        const savedView = localStorage.getItem("viewStyle");
+        const savedTheme = localStorage.getItem("themeStyle") || localStorage.getItem("themeStype");
 
-        themeSelect.addEventListener("change", () => {
-            const selectedTheme = themeSelect.value;
+        viewSelect.value = savedView === "Row" ? "Row" : "Grid";
+        themeSelect.value = savedTheme === "Dark" ? "Dark" : "Light";
 
-            localStorage.setItem("themeStype",selectedTheme);
+        function applyTheme(theme) {
+            const normalizedTheme = theme === "Dark" ? "Dark" : "Light";
+            document.documentElement.dataset.theme = normalizedTheme.toLowerCase();
+            localStorage.setItem("themeStyle", normalizedTheme);
+            localStorage.removeItem("themeStype");
+        }
 
+        applyTheme(themeSelect.value);
+        viewSelect.addEventListener("change", () => {
+            localStorage.setItem("viewStyle", viewSelect.value === "Row" ? "Row" : "Grid");
         });
+        themeSelect.addEventListener("change", () => applyTheme(themeSelect.value));
     </script>
 </body>
 </html>

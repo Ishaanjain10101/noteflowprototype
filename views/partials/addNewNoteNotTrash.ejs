@@ -44,21 +44,21 @@
                     <div id="createdAt-note">
                         <%= note.createdAt.toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric"}) %>
                     </div>
-                    <a href="/note/<%=note._id%>">
-                        <div id="view-more">View More</div>
-                    </a>
-                    <div class="star">
-                        <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="pin-div">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
-                            <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
-                        </svg>
-                    </div>
-                    <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>">
-                        <i class="fa-solid fa-trash-can"></i>
+                    <div class="note-actions">
+                        <a class="note-view-more" href="/note/<%=note._id%>">View More</a>
+                        <div class="star">
+                            <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="pin-div">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
+                                <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
+                            </svg>
+                        </div>
+                        <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
                     </div>
                 </div>
                 <dialog id="<%-note._id%>" class="confirmdialog">
@@ -77,21 +77,21 @@
                     <div id="createdAt-note">
                         <%= note.createdAt.toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric"}) %>
                     </div>
-                    <a href="/note/<%=note._id%>">
-                        <div id="view-more">View More</div>
-                    </a>
-                    <div class="star">
-                        <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="pin-div">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
-                            <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
-                        </svg>
-                    </div>
-                    <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>">
-                        <i class="fa-solid fa-trash-can"></i>
+                    <div class="note-actions">
+                        <a class="note-view-more" href="/note/<%=note._id%>">View More</a>
+                        <div class="star">
+                            <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="pin-div">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
+                                <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
+                            </svg>
+                        </div>
+                        <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
                     </div>
                 </div>
                 <dialog id="<%-note._id%>" class="confirmdialog">
@@ -112,4 +112,12 @@
         document.querySelectorAll(".star").forEach((div) => { div.style.display = "none"; });
     }
     const notesObject = <%- JSON.stringify(notes) %>;
+    const initialView = localStorage.getItem("viewStyle") === "Row" ? "list" : "grid";
+    const notesForm = document.getElementById("form");
+    const gridButton = document.getElementById("grid-button");
+    const listButton = document.getElementById("list-button");
+    notesForm.setAttribute("data-form", initialView);
+    gridButton.setAttribute("data-select", initialView === "grid" ? "true" : "false");
+    listButton.setAttribute("data-select", initialView === "list" ? "true" : "false");
+    document.querySelectorAll(".Note").forEach((note) => note.setAttribute("data-form", initialView));
 </script>

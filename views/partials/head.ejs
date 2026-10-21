@@ -63,6 +63,32 @@
       --transition-base: 250ms ease;
       --transition-slow: 400ms ease;
     }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --neutral-0: #18181b;
+      --neutral-50: #111113;
+      --neutral-100: #202024;
+      --neutral-200: #34343b;
+      --neutral-300: #4b4b55;
+      --neutral-400: #a1a1aa;
+      --neutral-500: #b8b8c0;
+      --neutral-600: #d0d0d6;
+      --neutral-700: #e4e4e7;
+      --neutral-800: #f4f4f5;
+      --neutral-900: #fafafa;
+      --neutral-950: #ffffff;
+      --primary-50: #172337;
+      --primary-100: #1d3150;
+      --primary-200: #294878;
+      --accent-50: #2b2118;
+      --error-100: #442225;
+      --success-100: #173b29;
+      --warning-100: #3d321c;
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.28);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.36);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.48);
+    }
 
     * {
       margin: 0;
@@ -93,4 +119,14 @@
       outline: none;
     }
     </style>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("themeStyle") || localStorage.getItem("themeStype");
+        document.documentElement.dataset.theme = savedTheme === "Dark" ? "dark" : "light";
+        localStorage.setItem("themeStyle", savedTheme === "Dark" ? "Dark" : "Light");
+        localStorage.removeItem("themeStype");
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
 </head>

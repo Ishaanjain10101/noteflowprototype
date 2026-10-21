@@ -111,6 +111,7 @@ grid.addEventListener("click", () => {
     form.setAttribute("data-form", "grid");
     grid.setAttribute("data-select", "true");
     list.setAttribute("data-select", "false");
+    localStorage.setItem("viewStyle", "Grid");
     notes.forEach((value) => { value.setAttribute("data-form", "grid"); });
     notesObject.forEach((note, i) => {
         document.getElementById(`title-note-${i+1}`).innerText = `${note.title.length > 9 ? note.title.slice(0,9)+"..." : note.title}`;
@@ -122,6 +123,7 @@ list.addEventListener("click", () => {
     form.setAttribute("data-form", "list");
     grid.setAttribute("data-select", "false");
     list.setAttribute("data-select", "true");
+    localStorage.setItem("viewStyle", "Row");
     notes.forEach((value) => { value.setAttribute("data-form", "list"); });
     notesObject.forEach((note, i) => {
         document.getElementById(`title-note-${i+1}`).innerText = `${note.title.length > 50 ? (note.title.slice(0,50) + "...") : note.title}`;
