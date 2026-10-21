@@ -367,6 +367,66 @@ display:none;
   color: var(--success-500);
 }
 
+.trash-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.trash-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.trash-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.trash-action-button.recover-icon {
+  color: var(--primary-600);
+  background: var(--primary-50);
+}
+
+.trash-action-button.recover-icon:hover {
+  background: var(--primary-100);
+  border-color: var(--primary-200);
+}
+
+.trash-action-button.dustbin-icon {
+  color: var(--error-500);
+  background: var(--error-100);
+}
+
+.trash-action-button.dustbin-icon:hover {
+  color: var(--neutral-0);
+  background: var(--error-500);
+}
+
+.Note[data-form="list"] .trash-card-actions {
+  width: auto;
+  margin-top: 0;
+  margin-left: auto;
+  padding-top: 0;
+  flex-shrink: 0;
+}
+
 /* ===== Confirm Dialog ===== */
 :root[data-theme="dark"] .confirmdialog {
   background: var(--neutral-0);
@@ -522,6 +582,15 @@ display:none;
     width: 100%;
     margin-left: 0;
     margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .Note[data-form="list"] .trash-card-actions {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .trash-actions {
     flex-wrap: wrap;
   }
   #logout {
