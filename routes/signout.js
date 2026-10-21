@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {auth} = require("../middlewares/auth");
+const auth = require("../middlewares/auth");
 const authR = require("../middlewares/authRedirect");
 
 router.post("/logout",auth,authR,(req,res)=>{
