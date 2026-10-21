@@ -448,6 +448,12 @@ display:none;
   color: var(--neutral-800);
 }
 .confirmdialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(400px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   border: none;
   border-radius: var(--radius-lg);
   padding: 24px;
