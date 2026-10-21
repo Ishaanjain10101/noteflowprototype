@@ -19,36 +19,24 @@
                     <div class="setting-label">Default view</div>
                     <div class="setting-value">
                         <select name="toggle-view" id="toggle-view">
-                            <option value="Grid">Grid</option>
+                            <option value="Grid" selected>Grid</option>
                             <option value="Row">Row</option>
                         </select>
                     </div>
                 </div>
                 <div class="settings-row">
-                    <div class="setting-label">Compact mode</div>
-                    <div class="toggle-switch"></div>
+                    <div class="setting-label">Theme</div>
+                    <div class="setting-value">
+                        <select name="toggle-theme" id="toggle-theme">
+                            <option value="Dark" selected>Dark</option>
+                            <option value="Light">Light</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="settings-row">
-                    <div class="setting-label">Auto-save notes</div>
-                    <div class="toggle-switch active"></div>
-                </div>
+               
             </div>
 
-            <div class="settings-section">
-                <h3>Appearance</h3>
-                <div class="settings-row">
-                    <div class="setting-label">Theme</div>
-                    <div class="setting-value">Light</div>
-                </div>
-                <div class="settings-row">
-                    <div class="setting-label">Accent color</div>
-                    <div class="setting-value">Blue</div>
-                </div>
-                <div class="settings-row">
-                    <div class="setting-label">Font size</div>
-                    <div class="setting-value">Medium</div>
-                </div>
-            </div>
+
 
             <div class="settings-section">
                 <h3>Notifications</h3>
@@ -86,6 +74,15 @@
             const selectedView = viewSelect.value;
 
             localStorage.setItem("viewStyle",selectedView);
+
+        });
+
+        const themeSelect = document.getElementById("toggle-theme");
+
+        themeSelect.addEventListener("change", () => {
+            const selectedTheme = themeSelect.value;
+
+            localStorage.setItem("themeStype",selectedTheme);
 
         });
     </script>
