@@ -162,6 +162,21 @@ display:none;
   grid-template-columns: 1fr;
 }
 
+#form.empty-form {
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 360px;
+}
+
+#form.empty-form .empty-state {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 360px;
+}
+
+#option-selection-grid-list.empty-view-controls {
+  justify-content: center;
+}
+
 .Note {
   background: var(--neutral-0);
   border: 1px solid var(--neutral-200);
