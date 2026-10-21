@@ -1,5 +1,5 @@
-const NoteModel = require("./models/notes");
-const userModel = require("./models/usermodel");
+const NoteModel = require("../models/notes");
+const userModel = require("../models/usermodel");
 
 async function profile(req,res){
     const user = await userModel.findById(req.userId);
