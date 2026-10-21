@@ -17,7 +17,12 @@
                 <h3>Preferences</h3>
                 <div class="settings-row">
                     <div class="setting-label">Default view</div>
-                    <div class="setting-value">Grid</div>
+                    <div class="setting-value">
+                        <select name="toggle-view" id="toggle-view">
+                            <option value="Grid">Grid</option>
+                            <option value="Row">Row</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="settings-row">
                     <div class="setting-label">Compact mode</div>
@@ -74,5 +79,15 @@
             </div>
         </div>
     </div>
+    <script>
+        const viewSelect = document.getElementById("toggle-view");
+
+        viewSelect.addEventListener("change", () => {
+            const selectedView = viewSelect.value;
+
+            localStorage.setItem("viewStyle",selectedView);
+
+        });
+    </script>
 </body>
 </html>
