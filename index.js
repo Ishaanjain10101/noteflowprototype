@@ -18,11 +18,11 @@ const signout = require("./routes/signout");
 const emailVerify = require("./routes/emailVerification");
 
 const NoteModel = require("./models/notes");
-const userModel = require("./models/usermodel");
 const cookieParser = require("cookie-parser");
 const deleteNote = require("./middlewares/deleteNote");
-const { auth } = require("./middlewares/auth");
+const auth = require("./middlewares/auth");
 const { connectDB } = require("./config/db");
+const profile = require("./routes/profile");
 connectDB();
 app.use(cookieParser());
 
@@ -63,6 +63,7 @@ app.use(add);
 app.use(deleteNoteTemp);
 app.use(deleteNoteForever);
 app.use(recover);
+app.use(profile);
 
 app.get("/",auth,async (req,res)=>{
     const notes = await NoteModel.find({userId:req.userId , recentlyDeleted:false});
@@ -103,23 +104,7 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
     })
 })
 
-app.get("/profile",auth,async(req,res)=>{
-    const user = await userModel.findById(req.userId);
-    const favNumber = (await NoteModel.find({userId:req.userId , favourite:true , recentlyDeleted:false})).length;
-    const totalNumber = (await NoteModel.find({userId:req.userId , recentlyDeleted:false})).length;
-    const pinnedNumber = (await NoteModel.find({userId:req.userId , pinned:true , recentlyDeleted:false})).length;
-    res.render("profile",{
-        signedIn : req.signedIn,
-        title:"Profile",
-        email:user.email,
-        name:user.name,
-        favNumber,
-        totalNumber,
-        pinnedNumber,
-        createdAt:user.createdAt,
-        userId:req.userId
-    })
-})
+
 
 app.get("/settings",auth,async(req,res)=>{
     res.render("settings",{
