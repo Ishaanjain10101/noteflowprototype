@@ -126,7 +126,8 @@
 
 #button-login,
 #button-signup,
-#button-verify {
+#button-verify,
+#button-forgot {
   width: 100%;
   padding: 12px;
   border-radius: var(--radius-md);
@@ -140,14 +141,16 @@
 
 #button-login:hover,
 #button-signup:hover,
-#button-verify:hover {
+#button-verify:hover,
+#button-forgot:hover {
   background: var(--primary-700);
   box-shadow: var(--shadow-md);
 }
 
 #button-login:active,
 #button-signup:active,
-#button-verify:active {
+#button-verify:active,
+#button-forgot:active {
   transform: scale(0.98);
 }
 
@@ -167,6 +170,18 @@
 #asking a:hover {
   color: var(--primary-700);
 }
+
+.theme-toggle {
+  width: 40px; height: 40px; border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md); color: var(--neutral-700);
+  background: var(--neutral-0); transition: all var(--transition-fast);
+}
+.theme-toggle:hover { border-color: var(--primary-300); color: var(--primary-600); }
+.auth-message { min-height: 22px; margin-top: 12px; text-align: center; font-size: 13px; color: var(--neutral-600); }
+.auth-message.error { color: var(--error-500); }
+.auth-message.success { color: var(--success-500); }
+#button-forgot:disabled { opacity: .7; cursor: wait; }
+.forgot-link { margin: 0 0 8px; }
 
 /* ===== Email Verify Code Input ===== */
 #container-code-input {
@@ -213,6 +228,8 @@
   font-size: 15px;
   font-weight: 500;
   color: var(--error-500);
+  background: var(--neutral-0);
+  text-align: center;
 }
 
 #exhausted::backdrop {

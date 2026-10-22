@@ -15,8 +15,14 @@ edit.addEventListener("click", () => {
 });
 
 update.addEventListener("click", async () => {
-    const t = title.value;
-    const c = content.value;
+    const t = title.value.trim();
+    const c = content.value.trim();
+    if (!t || !c) {
+        const dialog = document.getElementById("incomplete-data");
+        dialog.showModal();
+        setTimeout(() => { if (dialog.open) dialog.close(); }, 1800);
+        return;
+    }
     const containerNote = document.getElementById("container-note");
     const noteId = containerNote.getAttribute("data-id");
     const response = await fetch(`/note/updateData/${noteId}`, {

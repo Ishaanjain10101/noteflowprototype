@@ -57,7 +57,9 @@
         const savedTheme = localStorage.getItem("themeStyle") || localStorage.getItem("themeStype");
 
         viewSelect.value = savedView === "Row" ? "Row" : "Grid";
-        themeSelect.value = savedTheme === "Dark" ? "Dark" : "Light";
+        const explicitTheme = savedTheme === "Dark" || savedTheme === "Light";
+        const systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "Dark" : "Light";
+        themeSelect.value = explicitTheme ? savedTheme : systemTheme;
 
         function applyTheme(theme) {
             const normalizedTheme = theme === "Dark" ? "Dark" : "Light";

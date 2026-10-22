@@ -3,7 +3,8 @@
 .editor-wrapper {
   margin-left: 240px;
   padding: 32px 40px;
-  max-width: 800px;
+  width: calc(100% - 240px);
+  max-width: none;
 }
 
 #name {
@@ -48,7 +49,8 @@
   line-height: 1.6;
   color: var(--neutral-800);
   background: var(--neutral-0);
-  resize: vertical;
+  resize: none;
+  min-height: calc(100vh - 250px);
   transition: all var(--transition-fast);
 }
 
@@ -148,6 +150,8 @@
 }
 
 #incomplete-data {
+  width: min(420px, calc(100vw - 32px));
+  background: var(--neutral-0);
   border: none;
   border-radius: var(--radius-lg);
   padding: 24px;
@@ -158,6 +162,9 @@
   text-align: center;
 }
 
+#incomplete-data strong { display: block; color: var(--neutral-900); font-size: 17px; margin-bottom: 8px; }
+#incomplete-data p { color: var(--neutral-600); line-height: 1.5; }
+
 #incomplete-data::backdrop {
   background: rgba(0,0,0,0.3);
 }
@@ -166,6 +173,7 @@
   .editor-wrapper {
     margin-left: 64px;
     padding: 20px;
+    width: calc(100% - 64px);
   }
   #content {
     min-height: 300px;

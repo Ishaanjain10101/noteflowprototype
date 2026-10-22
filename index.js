@@ -106,6 +106,10 @@ app.get("/trash",auth,deleteNote,async(req,res)=>{
 
 
 
+app.get("/forgot-password",(req,res)=>{
+    res.render("forgotPassword");
+})
+
 app.get("/settings",auth,async(req,res)=>{
     res.render("settings",{
         signedIn : req.signedIn,

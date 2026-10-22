@@ -118,12 +118,16 @@
       font-family: var(--font-body);
       outline: none;
     }
+      dialog { position: fixed; inset: 0; margin: auto; max-width: min(420px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
     </style>
     <script>
       try {
         const savedTheme = localStorage.getItem("themeStyle") || localStorage.getItem("themeStype");
-        document.documentElement.dataset.theme = savedTheme === "Dark" ? "dark" : "light";
-        localStorage.setItem("themeStyle", savedTheme === "Dark" ? "Dark" : "Light");
+        const explicitTheme = savedTheme === "Dark" || savedTheme === "Light";
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = explicitTheme ? savedTheme : (prefersDark ? "Dark" : "Light");
+        document.documentElement.dataset.theme = theme.toLowerCase();
+        if (explicitTheme) localStorage.setItem("themeStyle", theme);
         localStorage.removeItem("themeStype");
       } catch (error) {
         document.documentElement.dataset.theme = "light";

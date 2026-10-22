@@ -42,6 +42,24 @@
         <%- include("partials/addNewNoteNotTrash") %>
     <% } %>
 
+    <% if (!signedIn) { %>
+    <script>
+      const themeToggle = document.getElementById("landing-theme-toggle");
+      const syncThemeButton = () => {
+        const dark = document.documentElement.dataset.theme === "dark";
+        themeToggle.innerHTML = dark ? '<i class="fa-solid fa-sun" aria-hidden="true"></i>' : '<i class="fa-solid fa-moon" aria-hidden="true"></i>';
+        themeToggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      };
+      syncThemeButton();
+      themeToggle.addEventListener("click", () => {
+        const theme = document.documentElement.dataset.theme === "dark" ? "Light" : "Dark";
+        document.documentElement.dataset.theme = theme.toLowerCase();
+        localStorage.setItem("themeStyle", theme);
+        localStorage.removeItem("themeStype");
+        syncThemeButton();
+      });
+    </script>
+    <% } %>
     <script src="/scripts/indexLoggedIn.js"></script>
 </body>
 </html>
