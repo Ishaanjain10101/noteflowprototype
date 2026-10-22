@@ -3,7 +3,7 @@ const userModel = require("../models/usermodel");
 async function signupUser(req,res,next) {
     const body = req.body;
     if(!body || !body.name|| !body.email || !body.password){
-        res.status(400).json({error:"Invalid Data"});
+        return res.status(400).json({error:"Please provide your name, email, and password."});
     }
     try{
         if(await userModel.findOne({email:body.email})){

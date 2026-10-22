@@ -1,45 +1,59 @@
-const name = document.querySelector("#name-input");
-name.focus();
+const nameInput = document.getElementById("name-input");
+const emailInput = document.getElementById("email-input");
+const passwordInput = document.getElementById("password-input");
+const button = document.getElementById("button-signup");
+const message = document.getElementById("signup-message");
+nameInput.focus();
 
 const eye = document.querySelector("#eye");
 eye.addEventListener("click", () => {
-    const password = document.querySelector("#password-input");
-    if (password.type === "password") {
-        eye.classList.remove("fa-eye-slash");
-        eye.classList.add("fa-eye");
-        password.type = "text";
-    } else {
-        eye.classList.remove("fa-eye");
-        eye.classList.add("fa-eye-slash");
-        password.type = "password";
-    }
+    const showingPassword = passwordInput.type === "password";
+    eye.classList.toggle("fa-eye-slash", !showingPassword);
+    eye.classList.toggle("fa-eye", showingPassword);
+    passwordInput.type = showingPassword ? "text" : "password";
 });
 
-const button = document.getElementById("button-signup");
+function showMessage(text) {
+    message.textContent = text;
+    message.className = "auth-message error";
+}
+
 button.addEventListener("click", async () => {
-    const name = document.getElementById("name-input").value;
-    const email = document.getElementById("email-input").value;
-    const password = document.getElementById("password-input").value;
-    if (name && email && password) {
-        const result = await fetch("/signup", {
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    message.textContent = "";
+    message.className = "auth-message";
+    emailInput.style.borderColor = "";
+    if (!name || !email || !password) {
+        showMessage("Please fill in your name, email, and password.");
+        return;
+    }
+    button.disabled = true;
+    try {
+        const response = await fetch("/signup", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ name, email, password })
         });
-        const msg = await result.json();
-        if (result.status === 400 && msg.code === 1) {
-            document.getElementById("email-input").style.borderColor = "red";
-            document.getElementById("email-input").onchange = () => {
-                document.getElementById("email-input").style.borderColor = "";
-            };
+        const result = await response.json().catch(() => ({}));
+        if (response.status === 400 && result.code === 1) {
+            emailInput.style.borderColor = "var(--error-500)";
+            showMessage("An account with this email already exists. Try logging in instead.");
+            emailInput.addEventListener("input", () => { emailInput.style.borderColor = ""; }, { once: true });
+            return;
         }
-        if (result.status === 200) {
-            document.getElementById("name-input").value = "";
-            document.getElementById("email-input").value = "";
-            document.getElementById("password-input").value = "";
+        if (response.ok) {
+            nameInput.value = "";
+            emailInput.value = "";
+            passwordInput.value = "";
             window.location.href = "/verify";
+            return;
         }
-    } else {
-        alert("Please fill in all fields");
+        showMessage(result.error || "We couldn’t create your account. Please try again.");
+    } catch (error) {
+        showMessage("Could not connect to the server. Please try again.");
+    } finally {
+        button.disabled = false;
     }
 });
