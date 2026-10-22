@@ -107,6 +107,30 @@ const list = document.getElementById("list-button");
 const form = document.getElementById("form");
 const notes = document.querySelectorAll(".Note");
 
+const narrowScreen = window.matchMedia("(max-width: 950px)");
+const applyResponsiveView = () => {
+    const useRow = !narrowScreen.matches && localStorage.getItem("viewStyle") === "Row";
+    const view = useRow ? "list" : "grid";
+    form.setAttribute("data-form", view);
+    grid.setAttribute("data-select", useRow ? "false" : "true");
+    list.setAttribute("data-select", useRow ? "true" : "false");
+    notes.forEach((note) => note.setAttribute("data-form", view));
+    notesObject.forEach((note, i) => {
+        const titleElement = document.getElementById(`title-note-${i + 1}`);
+        const contentElement = document.getElementById(`content-note-${i + 1}`);
+        if (!titleElement || !contentElement) return;
+        titleElement.innerText = useRow
+            ? (note.title.length > 50 ? note.title.slice(0, 50) + "..." : note.title)
+            : (note.title.length > 9 ? note.title.slice(0, 9) + "..." : note.title);
+        contentElement.innerText = useRow
+            ? (note.content.length > 200 ? note.content.slice(0, 200) + "..." : note.content)
+            : (note.content.length > 50 ? note.content.slice(0, 50) + "..." : note.content);
+    });
+};
+applyResponsiveView();
+narrowScreen.addEventListener("change", applyResponsiveView);
+
+
 grid.addEventListener("click", () => {
     form.setAttribute("data-form", "grid");
     grid.setAttribute("data-select", "true");
@@ -120,6 +144,7 @@ grid.addEventListener("click", () => {
 });
 
 list.addEventListener("click", () => {
+    if (narrowScreen.matches) return;
     form.setAttribute("data-form", "list");
     grid.setAttribute("data-select", "false");
     list.setAttribute("data-select", "true");

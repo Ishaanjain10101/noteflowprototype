@@ -72,7 +72,7 @@
 
 <script>
     const notesObject = <%- JSON.stringify(notes) %>;
-    const initialView = localStorage.getItem("viewStyle") === "Row" ? "list" : "grid";
+    const initialView = window.innerWidth > 950 && localStorage.getItem("viewStyle") === "Row" ? "list" : "grid";
     const notesForm = document.getElementById("form");
     const gridButton = document.getElementById("grid-button");
     const listButton = document.getElementById("list-button");

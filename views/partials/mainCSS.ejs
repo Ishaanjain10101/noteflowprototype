@@ -561,6 +561,11 @@ display:none;
   color: var(--neutral-400);
 }
 
+/* Row view is hidden and disabled on narrower screens. */
+@media (max-width: 950px) {
+  #list-button { display: none; }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .container-sidebar {
@@ -568,11 +573,15 @@ display:none;
     padding: 16px 0;
   }
   .container-sidebar .logo {
+    width: 100%;
     padding: 0;
+    justify-content: center;
     text-align: center;
     font-size: 0;
   }
   .container-sidebar .logo i {
+    display: block;
+    margin: 0 auto;
     font-size: 24px;
   }
   .container-sidebar .option > div div:not(:first-child) {
