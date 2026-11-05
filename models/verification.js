@@ -8,7 +8,7 @@ const verificationSchema = mongoose.Schema({
     verificationExpires:{
         type:Date,
         required:true,
-        default:Date.now()
+        default:Date.now()+(60*10*1000)
     },
     verificationAttempts:{
         type:Number,
