@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("partials/head") %>
-<%- include("partials/mainCSS") %>
 <%- include("partials/authCSS") %>
+<%- include("partials/mainCSS") %>
 </head>
 <body>
     <%- !signedIn ? include("partials/notLoggedin") : include("partials/loggedin") %>
 
     <% if (!signedIn) { %>
-        <div class="hero">
-            <h1>Capture ideas.<br><span class="highlight">Organise thoughts.</span><br>Flow effortlessly.</h1>
-            <p>NoteFlow is a clean, simple notes app that helps you write, organise, and find your notes with ease.</p>
-            <div class="cta-row">
-                <a href="/signup" class="cta-primary">Get Started Free</a>
-                <a href="/login" class="cta-secondary">Login</a>
-            </div>
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="feature-title">Quick Notes</div>
-                    <div class="feature-text">Jot down ideas in seconds</div>
+        <main class="landing-shell">
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow"><span></span> A LITTLE SPACE FOR BIG IDEAS</div>
+                    <h1 id="hero-title">Thoughts move fast.<br><span class="highlight">Catch them softly.</span></h1>
+                    <p>Give every idea a place to land. NoteFlow keeps your notes simple, personal, and easy to find when you need them again.</p>
+                    <div class="cta-row">
+                        <a href="/signup" class="cta-primary">Start writing <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                        <a href="/login" class="cta-secondary">I already have an account <span aria-hidden="true">→</span></a>
+                    </div>
+                    <div class="hero-note"><i class="fa-regular fa-circle-check" aria-hidden="true"></i> Your thoughts, in one calm place.</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon"><i class="fa-solid fa-star"></i></div>
-                    <div class="feature-title">Favourites</div>
-                    <div class="feature-text">Star important notes</div>
+                <div class="hero-preview" aria-label="A preview of the NoteFlow notes workspace">
+                    <div class="preview-window">
+                        <div class="preview-topbar"><div class="preview-brand"><span class="preview-mark"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i></span> NoteFlow</div><div class="preview-status"><span></span> All notes</div><div class="preview-avatar">J</div></div>
+                        <div class="preview-body">
+                            <aside class="preview-rail" aria-hidden="true"><span class="rail-active"><i class="fa-regular fa-note-sticky"></i></span><span><i class="fa-regular fa-star"></i></span><span><i class="fa-solid fa-thumbtack"></i></span><span><i class="fa-regular fa-trash-can"></i></span></aside>
+                                <div class="preview-notes">
+                                <div class="preview-heading"><div><span class="preview-kicker">YOUR NOTEBOOK</span><h2>Your notes</h2></div><span class="preview-add"><i class="fa-solid fa-plus" aria-hidden="true"></i> New note</span></div>
+                                <div class="preview-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Find a thought...</div>
+                                <article class="preview-card preview-card-sage"><div class="preview-card-meta"><i class="fa-solid fa-thumbtack" aria-label="Pinned"></i></div><h3>Little things worth making</h3><p>A reading nook by the window. A recipe book for the family. A garden that grows slowly...</p><div class="preview-card-footer"><small>Today&nbsp; · &nbsp;9:32 AM</small><span>Open note <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span><i class="fa-regular fa-trash-can preview-delete" aria-hidden="true"></i></div></article>
+                                <div class="preview-card-row"><article class="preview-card preview-card-peach"><div class="preview-card-meta"><i class="fa-regular fa-star" aria-label="Favourite"></i></div><h3>Weekend thoughts</h3><p>More walks, fewer tabs open.</p><div class="preview-card-footer"><small>Yesterday</small><span>Open <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span><i class="fa-regular fa-trash-can preview-delete" aria-hidden="true"></i></div></article><article class="preview-card preview-card-lilac"><div class="preview-card-meta"><i class="fa-regular fa-star" aria-label="Favourite"></i></div><h3>Project outline</h3><p>Start with the smallest useful version.</p><div class="preview-card-footer"><small>Oct 18</small><span>Open <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span><i class="fa-regular fa-trash-can preview-delete" aria-hidden="true"></i></div></article></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-caption"><span>01</span> A home for the things on your mind</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon"><i class="fa-solid fa-thumbtack"></i></div>
-                    <div class="feature-title">Pinned</div>
-                    <div class="feature-text">Keep key notes on top</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="feature-title">Secure</div>
-                    <div class="feature-text">Your notes are private</div>
-                </div>
-            </div>
-        </div>
+            </section>
+            <section class="landing-values" aria-label="NoteFlow highlights">
+                <div><span class="value-mark">01</span><div><strong>Write without friction</strong><p>Open a note and get it out of your head.</p></div></div>
+                <div><span class="value-mark">02</span><div><strong>Keep what matters close</strong><p>Pin or favourite the notes you return to.</p></div></div>
+                <div><span class="value-mark">03</span><div><strong>Find your way back</strong><p>A tidy home for ideas, plans, and lists.</p></div></div>
+            </section>
+        </main>
     <% } else { %>
         <%- include("partials/addNewNoteNotTrash") %>
     <% } %>

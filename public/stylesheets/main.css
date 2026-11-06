@@ -489,26 +489,6 @@ input, textarea {
   background: var(--neutral-200);
 }
 
-/* ===== Sign Out Button ===== */
-#logout {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  padding: 8px 20px;
-  border-radius: var(--radius-sm);
-  background: var(--neutral-100);
-  color: var(--neutral-600);
-  font-size: 13px;
-  font-weight: 600;
-  transition: all var(--transition-fast);
-  z-index: 50;
-}
-
-#logout:hover {
-  background: var(--error-100);
-  color: var(--error-500);
-}
-
 /* ===== Empty State ===== */
 .empty-state {
   display: flex;
@@ -595,8 +575,5 @@ input, textarea {
   }
   .Note[data-form="list"] .title-note {
     min-width: auto;
-  }
-  #logout {
-    right: 20px;
   }
 }

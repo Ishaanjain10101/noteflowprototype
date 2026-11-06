@@ -4,7 +4,7 @@ const userModel = require("../models/usermodel");
 const verificationCodeModel = require("../models/verification");
 const secret = process.env.JWT_SECRET;
 const path = require("path");
-
+const transpoter = require("../middlewares/smtp");
 async function emailVerificationSendCode(req,res){
     const veritoken = req.cookies.verify;
     if(!veritoken){

@@ -44,8 +44,10 @@
                     <a href="/profile"><div id="view-more">View Profile</div></a>
                 </div>
                 <div class="settings-row">
-                    <div class="setting-label">Sign out</div>
-                    <button class="danger-btn" id="logout">Sign Out</button>
+                    <div class="setting-label">Log out of NoteFlow</div>
+                    <button type="button" class="danger-btn" id="settings-logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Log out
+                    </button>
                 </div>
             </div>
         </div>
@@ -73,6 +75,24 @@
             localStorage.setItem("viewStyle", viewSelect.value === "Row" ? "Row" : "Grid");
         });
         themeSelect.addEventListener("change", () => applyTheme(themeSelect.value));
+
+        document.getElementById("settings-logout").addEventListener("click", async (event) => {
+            const button = event.currentTarget;
+            button.disabled = true;
+            button.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Logging out…';
+            try {
+                const response = await fetch("/logout", { method: "POST" });
+                if (response.ok) {
+                    window.location.href = "/";
+                    return;
+                }
+            } catch (error) {
+                // Keep the account settings visible so the user can retry.
+            }
+            button.disabled = false;
+            button.innerHTML = '<i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Log out';
+            button.focus();
+        });
     </script>
 </body>
 </html>

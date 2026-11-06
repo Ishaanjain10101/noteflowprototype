@@ -1,11 +1,21 @@
-<button id="logout">Sign Out</button>
-
 <div id="container-maincontent">
-    <div id="header">
-        <div id="heading"><%-title%></div>
+    <div id="header" class="dashboard-header">
+        <div class="dashboard-heading-block">
+            <div class="workspace-kicker"><span></span> YOUR NOTEBOOK</div>
+            <div class="dashboard-title-row">
+                <div id="heading"><%= title === "All Notes" ? "Your notes" : title %></div>
+                <span class="note-count"><%= notes.length %> <%= notes.length === 1 ? "note" : "notes" %></span>
+            </div>
+        </div>
+        <a class="dashboard-new-note" href="/add"><i class="fa-solid fa-plus" aria-hidden="true"></i> New note</a>
         <div id="underline"></div>
     </div>
 
+    <div class="dashboard-toolbar">
+        <label class="note-search" for="note-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" id="note-search" inputmode="search" autocomplete="off" placeholder="Find a thought..." aria-label="Search notes by title or content">
+        </label>
     <div id="option-selection-grid-list" data-select="true"<%= notes.length === 0 ? ' class="empty-view-controls"' : "" %>>
         <button id="grid-button" data-select="true">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -27,6 +37,8 @@
         </button>
     </div>
 
+    </div>
+
     <div id="form" data-form="grid" class="<%= notes.length === 0 ? 'empty-form' : '' %>">
         <%if(notes.length === 0){%>
             <div class="empty-state">
@@ -38,14 +50,14 @@
 
         <%notes.forEach((note,i)=>{%>
             <%if(note.pinned){%>
-                <div class="Note" id="note-<%=i+1%>" data-form="grid">
+                <div class="Note" id="note-<%=i+1%>" data-form="grid" data-search-text="<%= [note.title, note.content].join(' ') %>">
                     <div class="title-note" id="title-note-<%=i+1%>"></div>
                     <div class="content-note" id="content-note-<%=i+1%>"></div>
                     <div id="createdAt-note">
                         <%= note.createdAt.toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric"}) %>
                     </div>
                     <div class="note-actions">
-                        <a class="note-view-more" href="/note/<%=note._id%>">View More</a>
+                        <a class="note-view-more" href="/note/<%=note._id%>">Open note <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                         <div class="star">
                             <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -56,9 +68,9 @@
                                 <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
                             </svg>
                         </div>
-                        <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </div>
+                        <button type="button" class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>" aria-label="Move note to trash" title="Move to trash">
+                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
                 <dialog id="<%-note._id%>" class="confirmdialog">
@@ -71,14 +83,14 @@
 
         <%notes.forEach((note,i)=>{%>
             <%if(!note.pinned){%>
-                <div class="Note" id="note-<%=i+1%>" data-form="grid">
+                <div class="Note" id="note-<%=i+1%>" data-form="grid" data-search-text="<%= [note.title, note.content].join(' ') %>">
                     <div class="title-note" id="title-note-<%=i+1%>"></div>
                     <div class="content-note" id="content-note-<%=i+1%>"></div>
                     <div id="createdAt-note">
                         <%= note.createdAt.toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric"}) %>
                     </div>
                     <div class="note-actions">
-                        <a class="note-view-more" href="/note/<%=note._id%>">View More</a>
+                        <a class="note-view-more" href="/note/<%=note._id%>">Open note <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                         <div class="star">
                             <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -89,9 +101,9 @@
                                 <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
                             </svg>
                         </div>
-                        <div class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </div>
+                        <button type="button" class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>" aria-label="Move note to trash" title="Move to trash">
+                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
                 <dialog id="<%-note._id%>" class="confirmdialog">
@@ -101,6 +113,11 @@
                 </dialog>
             <%}%>
         <%})%>
+        <div class="search-empty-state" id="search-empty-state" hidden>
+            <span class="empty-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+            <strong>No matching notes</strong>
+            <span>Try a different title or phrase.</span>
+        </div>
     </div>
 </div>
 
@@ -120,4 +137,21 @@
     gridButton.setAttribute("data-select", initialView === "grid" ? "true" : "false");
     listButton.setAttribute("data-select", initialView === "list" ? "true" : "false");
     document.querySelectorAll(".Note").forEach((note) => note.setAttribute("data-form", initialView));
+
+    const searchInput = document.getElementById("note-search");
+    const searchForm = document.getElementById("form");
+    const searchEmptyState = document.getElementById("search-empty-state");
+    const initialEmptyState = searchForm.querySelector(".empty-state");
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim().normalize("NFKC").toLocaleLowerCase();
+        const cards = [...searchForm.querySelectorAll(".Note")];
+        let visibleCount = 0;
+        cards.forEach((card) => {
+            const text = (card.dataset.searchText || "").normalize("NFKC").toLocaleLowerCase();
+            card.hidden = Boolean(query) && !text.includes(query);
+            if (!card.hidden) visibleCount += 1;
+        });
+        if (initialEmptyState) initialEmptyState.hidden = Boolean(query);
+        searchEmptyState.hidden = !query || visibleCount > 0;
+    });
 </script>

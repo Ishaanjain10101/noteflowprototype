@@ -38,10 +38,3 @@ save.addEventListener("click", async () => {
         window.location.href = "/";
     }
 });
-
-document.getElementById("logout").addEventListener("click", async () => {
-    const response = await fetch("/logout", { method: "POST" });
-    if (response.ok) {
-        window.location.href = "/";
-    }
-});

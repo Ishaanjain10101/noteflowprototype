@@ -4,30 +4,33 @@
 <%- include("partials/authCSS") %>
 </head>
 <body>
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <div class="auth-logo">
-            <a href="/"><i class="fa-solid fa-feather-pointed"></i> NoteFlow</a>
-        </div>
-        <div class="ball"><i class="fa-solid fa-lock" id="lock"></i></div>
-        <div id="heading">Welcome Back</div>
-        <div class="auth-subtitle">Log in to your account</div>
-        <div>
-            <div class="auth-field">
-                <label for="email-input">Email</label>
-                <input type="email" id="email-input" autocomplete="username" required>
-            </div>
-            <div class="auth-field auth-field-password">
-                <label for="password-input">Password</label>
-                <input type="password" id="password-input" autocomplete="current-password" required>
-                <i class="fa-solid fa-eye-slash" id="eye"></i>
-            </div>
-        </div>
-        <div id="asking" class="forgot-link"><a href="/forgot-password">Forgot password?</a></div>
-        <button id="button-login">Log in</button>
-        <p id="login-message" class="auth-message" role="alert" aria-live="polite"></p>
-        <div id="asking">Don't have an account? <a href="/signup">Sign Up</a></div>
-    </div>
+<div class="auth-layout">
+    <%- include("partials/authStory") %>
+    <main class="auth-main">
+        <a class="auth-back" href="/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to home</a>
+        <section class="auth-card" aria-labelledby="heading">
+            <div class="auth-form-mark"><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></div>
+            <div class="auth-kicker">WELCOME BACK</div>
+            <h1 id="heading">Good to see you.</h1>
+            <p class="auth-subtitle">Log in to get back to your notes.</p>
+            <form id="login-form">
+                <div class="auth-field">
+                    <label for="email-input">Email address</label>
+                    <input type="email" id="email-input" name="email" autocomplete="username" placeholder="you@example.com" required>
+                </div>
+                <div class="auth-field auth-field-password">
+                    <label for="password-input">Password</label>
+                    <input type="password" id="password-input" name="password" autocomplete="current-password" placeholder="Enter your password" required>
+                    <button type="button" id="eye" aria-label="Show password" aria-pressed="false"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></button>
+                </div>
+                <div class="auth-forgot-link"><a href="/forgot-password">Forgot password?</a></div>
+                <button type="submit" id="button-login">Log in <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                <p id="login-message" class="auth-message" role="alert" aria-live="polite"></p>
+            </form>
+            <div class="auth-switch">New to NoteFlow? <a href="/signup">Create an account</a></div>
+        </section>
+        <div class="auth-footer"><i class="fa-solid fa-lock" aria-hidden="true"></i> Your notes stay yours.</div>
+    </main>
 </div>
 <script src="/scripts/login.js"></script>
 </body>

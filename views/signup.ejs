@@ -4,32 +4,36 @@
 <%- include("partials/authCSS") %>
 </head>
 <body>
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <div class="auth-logo">
-            <a href="/"><i class="fa-solid fa-feather-pointed"></i> NoteFlow</a>
-        </div>
-        <div id="heading">Create Account</div>
-        <div class="auth-subtitle">Start capturing your ideas today</div>
-        <div>
-            <div class="auth-field">
-                <label for="name-input">Username</label>
-                <input type="text" id="name-input">
-            </div>
-            <div class="auth-field">
-                <label for="email-input">Email</label>
-                <input type="email" id="email-input" autocomplete="username" required>
-            </div>
-            <div class="auth-field auth-field-password">
-                <label for="password-input">Password</label>
-                <input type="password" id="password-input" autocomplete="new-password" required>
-                <i class="fa-solid fa-eye-slash" id="eye"></i>
-            </div>
-        </div>
-        <button id="button-signup">Sign Up</button>
-        <p id="signup-message" class="auth-message" role="alert" aria-live="polite"></p>
-        <div id="asking">Already have an account? <a href="/login">Login</a></div>
-    </div>
+<div class="auth-layout">
+    <%- include("partials/authStory") %>
+    <main class="auth-main">
+        <a class="auth-back" href="/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to home</a>
+        <section class="auth-card" aria-labelledby="heading">
+            <div class="auth-form-mark"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i></div>
+            <div class="auth-kicker">A FRESH PAGE</div>
+            <h1 id="heading">Make room for a thought.</h1>
+            <p class="auth-subtitle">Create an account and start collecting the things you want to remember.</p>
+            <form id="signup-form">
+                <div class="auth-field">
+                    <label for="name-input">Your name</label>
+                    <input type="text" id="name-input" name="name" autocomplete="name" placeholder="How should we call you?" required>
+                </div>
+                <div class="auth-field">
+                    <label for="email-input">Email address</label>
+                    <input type="email" id="email-input" name="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+                <div class="auth-field auth-field-password">
+                    <label for="password-input">Password</label>
+                    <input type="password" id="password-input" name="password" autocomplete="new-password" placeholder="Create a password" required>
+                    <button type="button" id="eye" aria-label="Show password" aria-pressed="false"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></button>
+                </div>
+                <button type="submit" id="button-signup">Create account <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                <p id="signup-message" class="auth-message" role="alert" aria-live="polite"></p>
+            </form>
+            <div class="auth-switch">Already have an account? <a href="/login">Log in</a></div>
+        </section>
+        <div class="auth-footer"><i class="fa-solid fa-lock" aria-hidden="true"></i> Your notes stay yours.</div>
+    </main>
 </div>
 <script src="/scripts/signup.js"></script>
 </body>

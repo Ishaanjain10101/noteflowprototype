@@ -179,4 +179,27 @@
     min-height: 300px;
   }
 }
+
+.editor-wrapper { margin-left:252px; padding:42px clamp(26px, 4.5vw, 72px); width:calc(100% - 252px); }
+#name { font:500 31px/1.2 Georgia, 'Times New Roman', serif; letter-spacing:-.6px; }
+#container-note { border-radius:18px; box-shadow:var(--shadow-xs); }
+#title, #content { border-radius:12px; }
+#title { min-height:52px; font-family:Georgia, 'Times New Roman', serif; font-size:21px; font-weight:500; }
+#content { padding:21px; line-height:1.8; }
+.outside-element { min-height:44px; border-radius:10px; touch-action:manipulation; }
+@media (max-width: 820px) {
+  .editor-wrapper { margin-left:66px; padding:32px 25px; width:calc(100% - 66px); }
+  #container-note { padding:25px; }
+}
+@media (max-width: 560px) {
+  .editor-wrapper { margin:0; padding:25px 17px calc(96px + env(safe-area-inset-bottom)); width:100%; }
+  #name { padding-right:70px; font-size:29px; }
+  #container-note { padding:18px 15px; }
+  #title { min-height:50px; font-size:19px; }
+  #content { min-height:300px; min-height:calc(100dvh - 320px); padding:16px; font-size:16px; }
+  .editor-actions { gap:9px; flex-wrap:wrap; }
+  .outside-element { min-height:46px; padding:10px 16px; }
+  #incomplete-data { padding:21px 17px; border-radius:16px; }
+}
+
 </style>

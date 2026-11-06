@@ -1,15 +1,17 @@
+const form = document.getElementById("login-form");
 const button = document.getElementById("button-login");
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
 const message = document.getElementById("login-message");
-emailInput.focus();
-
-const eye = document.querySelector("#eye");
-eye.addEventListener("click", () => {
+const eyeButton = document.querySelector("#eye");
+const eyeIcon = eyeButton.querySelector("i");
+eyeButton.addEventListener("click", () => {
     const showingPassword = passwordInput.type === "password";
-    eye.classList.toggle("fa-eye-slash", !showingPassword);
-    eye.classList.toggle("fa-eye", showingPassword);
+    eyeIcon.classList.toggle("fa-eye-slash", !showingPassword);
+    eyeIcon.classList.toggle("fa-eye", showingPassword);
     passwordInput.type = showingPassword ? "text" : "password";
+    eyeButton.setAttribute("aria-label", showingPassword ? "Hide password" : "Show password");
+    eyeButton.setAttribute("aria-pressed", String(showingPassword));
 });
 
 function showMessage(text) {
@@ -17,7 +19,8 @@ function showMessage(text) {
     message.className = "auth-message error";
 }
 
-button.addEventListener("click", async () => {
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const email = emailInput.value.trim();
     const password = passwordInput.value;
     message.textContent = "";
@@ -41,7 +44,7 @@ button.addEventListener("click", async () => {
         }
         showMessage(response.status === 400 || response.status === 404
             ? "Incorrect email or password. Please try again."
-            : "We couldn’t log you in right now. Please try again.");
+            : "We couldnâ€™t log you in right now. Please try again.");
     } catch (error) {
         showMessage("Could not connect to the server. Please try again.");
     } finally {

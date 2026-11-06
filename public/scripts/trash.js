@@ -1,14 +1,10 @@
-if (document.getElementById("form").getAttribute("data-form") === "grid") {
-    notesObject.forEach((note, i) => {
-        document.getElementById(`title-note-${i+1}`).innerText = `${note.title.length > 9 ? note.title.slice(0,9)+"..." : note.title}`;
-        document.getElementById(`content-note-${i+1}`).innerText = `${note.content.length > 50 ? note.content.slice(0,50)+"..." : note.content}`;
-    });
-} else {
-    notesObject.forEach((note, i) => {
-        document.getElementById(`title-note-${i+1}`).innerText = `${note.title.length > 50 ? (note.title.slice(0,50) + "...") : note.title}`;
-        document.getElementById(`content-note-${i+1}`).innerText = `${note.content.length > 200 ? note.content.slice(0,200)+"..." : note.content}`;
-    });
-}
+notesObject.forEach((note, i) => {
+    const titleElement = document.getElementById(`title-note-${i + 1}`);
+    const contentElement = document.getElementById(`content-note-${i + 1}`);
+    if (!titleElement || !contentElement) return;
+    titleElement.textContent = note.title || "Untitled note";
+    contentElement.textContent = note.content || "";
+});
 
 const add = document.querySelector("#add");
 if (add) {
@@ -32,12 +28,8 @@ const applyResponsiveView = () => {
         const titleElement = document.getElementById(`title-note-${i + 1}`);
         const contentElement = document.getElementById(`content-note-${i + 1}`);
         if (!titleElement || !contentElement) return;
-        titleElement.innerText = useRow
-            ? (note.title.length > 50 ? note.title.slice(0, 50) + "..." : note.title)
-            : (note.title.length > 9 ? note.title.slice(0, 9) + "..." : note.title);
-        contentElement.innerText = useRow
-            ? (note.content.length > 200 ? note.content.slice(0, 200) + "..." : note.content)
-            : (note.content.length > 50 ? note.content.slice(0, 50) + "..." : note.content);
+        titleElement.textContent = note.title || "Untitled note";
+        contentElement.textContent = note.content || "";
     });
 };
 applyResponsiveView();
@@ -50,10 +42,6 @@ grid.addEventListener("click", () => {
     list.setAttribute("data-select", "false");
     localStorage.setItem("viewStyle", "Grid");
     notes.forEach((value) => { value.setAttribute("data-form", "grid"); });
-    notesObject.forEach((note, i) => {
-        document.getElementById(`title-note-${i+1}`).innerText = `${note.title.length > 9 ? note.title.slice(0,9)+"..." : note.title}`;
-        document.getElementById(`content-note-${i+1}`).innerText = `${note.content.length > 50 ? note.content.slice(0,50)+"..." : note.content}`;
-    });
 });
 
 list.addEventListener("click", () => {
@@ -63,10 +51,6 @@ list.addEventListener("click", () => {
     list.setAttribute("data-select", "true");
     localStorage.setItem("viewStyle", "Row");
     notes.forEach((value) => { value.setAttribute("data-form", "list"); });
-    notesObject.forEach((note, i) => {
-        document.getElementById(`title-note-${i+1}`).innerText = `${note.title.length > 50 ? (note.title.slice(0,50) + "...") : note.title}`;
-        document.getElementById(`content-note-${i+1}`).innerText = `${note.content.length > 200 ? note.content.slice(0,200)+"..." : note.content}`;
-    });
 });
 
 const deleteNote = document.querySelectorAll(".dustbin-icon");
@@ -97,11 +81,4 @@ recoverNote.forEach((icon) => {
             location.reload();
         }
     }, { once: true });
-});
-
-document.getElementById("logout").addEventListener("click", async () => {
-    const response = await fetch("/logout", { method: "POST" });
-    if (response.ok) {
-        window.location.href = "/";
-    }
 });

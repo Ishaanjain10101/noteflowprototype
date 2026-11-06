@@ -25,3 +25,5 @@ const transpoter = nodemailer.createTransport({
         console.log(err)
     }
 })();
+
+module.exports = transpoter;
