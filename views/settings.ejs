@@ -38,6 +38,23 @@
                 <p class="settings-card-copy">Reset your password using your account email.</p>
                 <a class="settings-action-link" href="/forgot-password">Change password <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
+            <section class="settings-section export-section" aria-labelledby="export-notes-heading">
+                <h3 id="export-notes-heading">Export notes</h3>
+                <p class="settings-card-copy">Download a copy of your active notes. ZIP includes TXT, PDF, and JSON files.</p>
+                <form class="export-form" action="/settings/export" method="get">
+                    <label for="export-format">File format</label>
+                    <div class="export-controls">
+                        <select id="export-format" name="format" aria-label="Export file format">
+                            <option value="txt">Plain text (.txt)</option>
+                            <option value="pdf">PDF document (.pdf)</option>
+                            <option value="json">JSON data (.json)</option>
+                            <option value="zip">ZIP bundle (.zip)</option>
+                        </select>
+                        <button type="submit" class="export-button"><i class="fa-solid fa-download" aria-hidden="true"></i> Download export</button>
+                    </div>
+                    <p class="export-note">Trashed notes are excluded from the export.</p>
+                </form>
+            </section>
             <div class="settings-section">
                 <h3>Log out</h3>
                 <p class="settings-card-copy">End your current NoteFlow session on this device.</p>

@@ -720,6 +720,13 @@ body { background:var(--neutral-50); }
 .account-danger-status[hidden], .settings-feedback[hidden] { display:none !important; }
 .account-danger-status.error { color:var(--error-500); }
 .settings-card-copy { margin:-5px 0 16px; color:var(--neutral-500); font-size:14px; line-height:1.6; }
+.export-form label { display:block; margin-bottom:8px; color:var(--neutral-700); font-size:13px; font-weight:650; }
+.export-controls { display:flex; align-items:center; gap:10px; }
+.export-controls select { flex:1; min-width:0; min-height:44px; padding:9px 38px 9px 12px; border:1px solid var(--neutral-200); border-radius:10px; background:var(--neutral-50); color:var(--neutral-800); font:inherit; font-size:14px; }
+.export-controls select:focus-visible, .export-button:focus-visible { outline:3px solid var(--primary-300); outline-offset:2px; }
+.export-button { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:44px; padding:0 16px; border:1px solid var(--primary-50); border-radius:10px; background:var(--primary-50); color:#fff; font-size:13px; font-weight:650; white-space:nowrap; touch-action:manipulation; }
+.export-button:hover { background:var(--primary-100); }
+.export-note { margin-top:10px; color:var(--neutral-500); font-size:12px; line-height:1.5; }
 .settings-action-link { display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:0 13px; border-radius:9px; background:var(--primary-50); color:var(--primary-700); font-size:13px; font-weight:650; }
 .settings-action-link:hover { background:var(--primary-100); }
 .profile-settings-card { display:flex; align-items:center; justify-content:space-between; gap:18px; }
@@ -758,6 +765,8 @@ body { background:var(--neutral-50); }
   .settings-action-link{
     font-size: 17px;
   }
+  .export-controls { align-items:stretch; flex-direction:column; }
+  .export-button { width:100%; }
 }
 @media (max-width: 360px) {
   .auth-card { padding:26px 17px 22px; }

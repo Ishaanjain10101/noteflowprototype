@@ -16,6 +16,7 @@ const deleteNoteForever = require("./routes/deleteNoteForever");
 const recover = require("./routes/recover");
 const signout = require("./routes/signout");
 const emailVerify = require("./routes/emailVerification");
+const exportNotes = require("./routes/exportNotes");
 
 const NoteModel = require("./models/notes");
 const cookieParser = require("cookie-parser");
@@ -66,6 +67,7 @@ app.use(deleteNoteTemp);
 app.use(deleteNoteForever);
 app.use(recover);
 app.use(profile);
+app.use(exportNotes);
 
 app.get("/",auth,async (req,res)=>{
     const notes = await NoteModel.find({userId:req.userId , recentlyDeleted:false});
