@@ -8,7 +8,10 @@
     <%- include("partials/loggedin") %>
     <div class="editor-wrapper">
         <div id="container-note" data-id="<%=noteId%>">
-            <div id="name">View Note</div>
+            <div class="editor-page-heading">
+                <div id="name">View Note</div>
+                <a class="editor-back" href="/trash"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to trash</a>
+            </div>
             <input type="text" id="title" value="<%=title%>" disabled>
             <textarea name="content" id="content" disabled><%=content%></textarea>
         </div>

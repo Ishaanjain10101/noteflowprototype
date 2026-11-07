@@ -7,7 +7,14 @@
 <body>
     <%- include("partials/loggedin") %>
     <div class="editor-wrapper">
-        <div id="name">Add Note</div>
+        <div class="editor-page-heading">
+            <div id="name">Add Note</div>
+            <a class="editor-back" href="/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to notes</a>
+        </div>
+        <div class="draft-tools" style="display: none;">
+            <p class="draft-status" id="draft-status" role="status" aria-live="polite" hidden style="display: none;"></p>
+            <button type="button" class="editor-draft-clear" id="discard-draft" hidden style="display: none;">Discard draft</button>
+        </div>
         <input type="text" id="title" placeholder="Title">
         <textarea name="content" id="content" placeholder="Start writing..."></textarea>
         <div class="editor-actions">

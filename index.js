@@ -23,6 +23,8 @@ const deleteNote = require("./middlewares/deleteNote");
 const auth = require("./middlewares/auth");
 const { connectDB } = require("./config/db");
 const profile = require("./routes/profile");
+const authR = require("./middlewares/authRedirect");
+const usermodel = require("./models/usermodel");
 connectDB();
 app.use(cookieParser());
 
@@ -113,6 +115,14 @@ app.get("/settings",auth,async(req,res)=>{
         title:"Settings",
         userId:req.userId
     })
+});
+
+app.delete("/account",auth,authR,async (req,res)=>{
+    const userId = req.userId;
+    await usermodel.deleteOne({_id : userId});
+    await NoteModel.deleteMany({userId:userId});
+    res.clearCookie("token");
+    res.status(200).json({msg : "Deleted Account"});
 })
 
 if (process.env.NODE_ENV !== 'production') {

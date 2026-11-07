@@ -21,7 +21,7 @@ async function emailVerificationSendCode(req,res){
             subject:"Email Verification Code",
             to:tempData.email,
             html:html,
-            text:"This is a test email just to see if it is working or not",
+            text:`Your NoteFlow verification code is ${tempData.verificationCode}. It expires in 10 minutes and can only be used once. Do not share this code with anyone. If you did not request it, you can ignore this email.`,
         }); 
     }catch(err){
         console.log(err);
