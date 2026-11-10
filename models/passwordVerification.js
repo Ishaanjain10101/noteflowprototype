@@ -7,12 +7,15 @@ const verificationSchema = mongoose.Schema({
     },
     verificationExpires:{
         type:Date,
-        required:true,
-        default:Date.now()+(60*10*1000)
+        required:true
     },
     verificationAttempts:{
         type:Number,
         default:0
+    },
+    lastSentAt:{
+        type:Date,
+        required:true
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
@@ -23,7 +26,13 @@ const verificationSchema = mongoose.Schema({
         trim:true,
         lowercase:true
     },
+    verified:{
+        type:Boolean,
+        default:false
+    },
 },{timestamps:true});
+
+verificationSchema.index({ verificationExpires: 1 }, { expireAfterSeconds: 0 });
 
 
 module.exports = mongoose.model("PasswordVerificationCode",verificationSchema);

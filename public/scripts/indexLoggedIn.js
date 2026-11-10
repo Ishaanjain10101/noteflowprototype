@@ -1,48 +1,34 @@
 const fav = document.querySelectorAll(".outside-element");
 fav.forEach((star) => {
     const noteId = star.getAttribute("data-id");
-    notesObject.forEach((note) => {
-        if (note._id === noteId) {
-            if (note.favourite) {
-                star.setAttribute("fill", "var(--accent-500)");
-                star.setAttribute("stroke", "var(--accent-500)");
-                star.setAttribute("stroke-width", "1.5");
-                star.setAttribute("stroke-linejoin", "round");
-            }
-        }
-    });
+    const button = star.closest(".star");
+    let isFavourite = notesObject.some(note => note._id === noteId && note.favourite);
+    const syncFavourite = () => {
+        star.setAttribute("fill", isFavourite ? "var(--accent-500)" : "none");
+        star.setAttribute("stroke", isFavourite ? "var(--accent-500)" : "var(--primary-600)");
+        button.setAttribute("aria-pressed", String(isFavourite));
+        button.setAttribute("aria-label", isFavourite ? "Remove note from favourites" : "Add note to favourites");
+        button.title = isFavourite ? "Remove from favourites" : "Add to favourites";
+    };
+    syncFavourite();
 
-    star.addEventListener("click", async () => {
-        if (star.getAttribute("fill") === "var(--accent-500)") {
-            star.setAttribute("fill", "none");
-            star.setAttribute("stroke", "var(--primary-600)");
-            star.setAttribute("stroke-width", "1.5");
-            star.setAttribute("stroke-linejoin", "round");
-            star.disabled = true;
+    button.addEventListener("click", async () => {
+        const nextValue = !isFavourite;
+        button.disabled = true;
+        try {
             const response = await fetch(`/note/${noteId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ favourite: false })
+                body: JSON.stringify({ favourite: nextValue })
             });
-            star.disabled = false;
-            if (response.status === 202 && location.pathname === "/fav") {
-                location.reload();
-            }
-        } else {
-            star.setAttribute("fill", "var(--accent-500)");
-            star.setAttribute("stroke", "var(--accent-500)");
-            star.setAttribute("stroke-width", "1.5");
-            star.setAttribute("stroke-linejoin", "round");
-            star.disabled = true;
-            const response = await fetch(`/note/${noteId}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ favourite: true })
-            });
-            star.disabled = false;
-            if (response.status === 202 && location.pathname === "/fav") {
-                location.reload();
-            }
+            if (!response.ok) throw new Error("Could not update favorite state");
+            isFavourite = nextValue;
+            syncFavourite();
+            if (response.status === 202 && location.pathname === "/fav") location.reload();
+        } catch (error) {
+            button.focus();
+        } finally {
+            button.disabled = false;
         }
     });
 });
@@ -50,37 +36,33 @@ fav.forEach((star) => {
 const pinButtons = document.querySelectorAll(".pin-button");
 pinButtons.forEach((pin) => {
     const noteId = pin.getAttribute("data-id");
-    notesObject.forEach((note) => {
-        if (note._id === noteId && note.pinned) {
-            pin.setAttribute("fill", "var(--neutral-800)");
-        }
-    });
+    const button = pin.closest(".pin-div");
+    let isPinned = notesObject.some(note => note._id === noteId && note.pinned);
+    const syncPinned = () => {
+        pin.setAttribute("fill", isPinned ? "var(--neutral-800)" : "none");
+        button.setAttribute("aria-pressed", String(isPinned));
+        button.setAttribute("aria-label", isPinned ? "Unpin note" : "Pin note");
+        button.title = isPinned ? "Unpin note" : "Pin note";
+    };
+    syncPinned();
 
-    pin.addEventListener("click", async () => {
-        if (pin.getAttribute("fill") === "var(--neutral-800)") {
-            pin.setAttribute("fill", "none");
-            pin.disabled = true;
+    button.addEventListener("click", async () => {
+        const nextValue = !isPinned;
+        button.disabled = true;
+        try {
             const response = await fetch(`/note/pin/${noteId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pinned: false })
+                body: JSON.stringify({ pinned: nextValue })
             });
-            pin.disabled = false;
-            if (response.status === 202) {
-                location.reload();
-            }
-        } else {
-            pin.setAttribute("fill", "var(--neutral-800)");
-            pin.disabled = true;
-            const response = await fetch(`/note/pin/${noteId}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ pinned: true })
-            });
-            pin.disabled = false;
-            if (response.status === 202) {
-                location.reload();
-            }
+            if (!response.ok) throw new Error("Could not update pinned state");
+            isPinned = nextValue;
+            syncPinned();
+            if (response.status === 202) location.reload();
+        } catch (error) {
+            button.focus();
+        } finally {
+            button.disabled = false;
         }
     });
 });

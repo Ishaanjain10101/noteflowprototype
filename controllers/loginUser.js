@@ -3,12 +3,17 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
+
 async function loginUser(req,res){
     const body = req.body;
+    body.email = String(body.email.trim().toLowerCase());
+
     if(!body || !body.email || !body.password){
         return res.status(400).json({error:"Invalid Data"})
     }
+        
     const user = await userModel.findOne({"email":body.email});
+    
     if(!user){
         return res.status(404).json({error:"User Doesn't Exsit"});
     }

@@ -35,8 +35,8 @@
             </div>
             <div class="settings-section">
                 <h3>Change password</h3>
-                <p class="settings-card-copy">Reset your password using your account email.</p>
-                <a class="settings-action-link" href="/forgot-password">Change password <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <p class="settings-card-copy">Update your password using your current password.</p>
+                <a class="settings-action-link" href="/change-password">Change password <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
             <section class="settings-section export-section" aria-labelledby="export-notes-heading">
                 <h3 id="export-notes-heading">Export notes</h3>
@@ -75,6 +75,24 @@
             </div>
         </div>
     </div>
+    <dialog class="settings-confirm-dialog" id="logout-confirm-dialog" aria-labelledby="logout-dialog-title" aria-describedby="logout-dialog-copy">
+        <div class="settings-dialog-icon"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i></div>
+        <h2 id="logout-dialog-title">Log out of NoteFlow?</h2>
+        <p id="logout-dialog-copy">You’ll need to log in again to get back to your notes.</p>
+        <div class="settings-dialog-actions">
+            <button type="button" class="settings-dialog-button secondary" data-close-dialog="logout-confirm-dialog" autofocus>Stay here</button>
+            <button type="button" class="settings-dialog-button primary" id="confirm-logout">Log out</button>
+        </div>
+    </dialog>
+    <dialog class="settings-confirm-dialog is-destructive" id="delete-confirm-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-copy">
+        <div class="settings-dialog-icon"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></div>
+        <h2 id="delete-dialog-title">Delete your account?</h2>
+        <p id="delete-dialog-copy">This permanently deletes your account and all your notes. You can’t undo this action.</p>
+        <div class="settings-dialog-actions">
+            <button type="button" class="settings-dialog-button secondary" data-close-dialog="delete-confirm-dialog" autofocus>Keep my account</button>
+            <button type="button" class="settings-dialog-button danger" id="confirm-delete-account">Delete account</button>
+        </div>
+    </dialog>
     <script>
         const viewSelect = document.getElementById("toggle-view");
         const themeSelect = document.getElementById("toggle-theme");
@@ -99,12 +117,27 @@
         });
         themeSelect.addEventListener("change", () => applyTheme(themeSelect.value));
 
-        document.getElementById("settings-logout").addEventListener("click", async (event) => {
-            const button = event.currentTarget;
+        const logoutDialog = document.getElementById("logout-confirm-dialog");
+        const deleteDialog = document.getElementById("delete-confirm-dialog");
+        const logoutTrigger = document.getElementById("settings-logout");
+        const deleteTrigger = document.getElementById("delete-account");
+
+        document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+            button.addEventListener("click", () => document.getElementById(button.dataset.closeDialog).close());
+        });
+
+        logoutTrigger.addEventListener("click", () => {
             const status = document.getElementById("logout-status");
             status.hidden = true;
             status.textContent = "";
+            logoutDialog.showModal();
+        });
+
+        document.getElementById("confirm-logout").addEventListener("click", async (event) => {
+            const button = event.currentTarget;
+            logoutDialog.close();
             button.disabled = true;
+            logoutTrigger.disabled = true;
             button.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Logging out…';
             try {
                 const response = await fetch("/logout", { method: "POST" });
@@ -114,25 +147,35 @@
                 }
                 throw new Error("Unable to log out. Please try again.");
             } catch (error) {
+                const status = document.getElementById("logout-status");
                 status.textContent = error.message || "Unable to log out. Please try again.";
                 status.hidden = false;
             }
             button.disabled = false;
-            button.innerHTML = '<i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Log out';
-            button.focus();
+            logoutTrigger.disabled = false;
+            button.innerHTML = "Log out";
+            logoutTrigger.focus();
         });
 
-        document.getElementById("delete-account").addEventListener("click", async (event) => {
+        deleteTrigger.addEventListener("click", () => {
+            const status = document.getElementById("delete-account-status");
+            status.hidden = true;
+            status.classList.remove("error");
+            status.textContent = "";
+            deleteDialog.showModal();
+        });
+
+        document.getElementById("confirm-delete-account").addEventListener("click", async (event) => {
             const button = event.currentTarget;
             const status = document.getElementById("delete-account-status");
-            if (!window.confirm("Permanently delete your NoteFlow account and all its notes? This cannot be undone.")) return;
-
+            deleteDialog.close();
             button.disabled = true;
+            deleteTrigger.disabled = true;
             try {
                 status.hidden = false;
                 status.textContent = "Deleting your account…";
                 const response = await fetch("/account", { method: "DELETE" });
-                if (!response.ok) throw new Error("Account deletion is not connected yet. Add the DELETE /account route to enable it.");
+                if (!response.ok) throw new Error("Could not delete your account. Please try again.");
                 localStorage.removeItem("data-form");
                 localStorage.removeItem("noteflow:add-note-draft:v1");
                 localStorage.removeItem("themeStype");
@@ -142,8 +185,9 @@
                 status.hidden = false;
                 status.classList.add("error");
                 status.textContent = error.message || "Could not delete the account. Please try again.";
+                deleteTrigger.disabled = false;
                 button.disabled = false;
-                button.focus();
+                deleteTrigger.focus();
             }
         });
     </script>

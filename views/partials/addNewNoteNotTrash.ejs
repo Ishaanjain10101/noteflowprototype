@@ -58,16 +58,16 @@
                     </div>
                     <div class="note-actions">
                         <a class="note-view-more" href="/note/<%=note._id%>">Open note <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-                        <div class="star">
-                            <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
+                        <button type="button" class="star" aria-label="<%= note.favourite ? 'Remove note from favourites' : 'Add note to favourites' %>" aria-pressed="<%= note.favourite ? 'true' : 'false' %>" title="<%= note.favourite ? 'Remove from favourites' : 'Add to favourites' %>">
+                            <svg class="outside-element" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
                             </svg>
-                        </div>
-                        <div class="pin-div">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
+                        </button>
+                        <button type="button" class="pin-div" aria-label="<%= note.pinned ? 'Unpin note' : 'Pin note' %>" aria-pressed="<%= note.pinned ? 'true' : 'false' %>" title="<%= note.pinned ? 'Unpin note' : 'Pin note' %>">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
                                 <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
                             </svg>
-                        </div>
+                        </button>
                         <button type="button" class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>" aria-label="Move note to trash" title="Move to trash">
                             <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                         </button>
@@ -91,16 +91,16 @@
                     </div>
                     <div class="note-actions">
                         <a class="note-view-more" href="/note/<%=note._id%>">Open note <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-                        <div class="star">
-                            <svg class="outside-element" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
+                        <button type="button" class="star" aria-label="<%= note.favourite ? 'Remove note from favourites' : 'Add note to favourites' %>" aria-pressed="<%= note.favourite ? 'true' : 'false' %>" title="<%= note.favourite ? 'Remove from favourites' : 'Add to favourites' %>">
+                            <svg class="outside-element" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="star-<%=i+1%>" fill="none" stroke="var(--primary-600)" stroke-width="1.5" stroke-linejoin="round" data-id="<%=note._id%>">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
                             </svg>
-                        </div>
-                        <div class="pin-div">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
+                        </button>
+                        <button type="button" class="pin-div" aria-label="<%= note.pinned ? 'Unpin note' : 'Pin note' %>" aria-pressed="<%= note.pinned ? 'true' : 'false' %>" title="<%= note.pinned ? 'Unpin note' : 'Pin note' %>">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="pin-button" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="30" height="30" id="pin-<%=i+1%>" stroke="var(--neutral-700)" stroke-width="1.5" fill="none" stroke-linejoin="round" data-id="<%=note._id%>">
                                 <path d="M16 3l5 5-1.42 1.42-1.13-.35-3.44 3.44.71 2.83-1.42 1.42-3.54-3.54-4.6 4.6-1.42-1.42 4.6-4.6-3.54-3.54 1.42-1.42 2.83.71 3.44-3.44-.35-1.13z"/>
                             </svg>
-                        </div>
+                        </button>
                         <button type="button" class="dustbin dustbin-icon" data-id="<%=note._id%>" id="trash-<%=note._id%>" aria-label="Move note to trash" title="Move to trash">
                             <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
                         </button>

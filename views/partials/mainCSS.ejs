@@ -314,6 +314,11 @@ display:none;
   top: 16px;
   right: 16px;
   cursor: pointer;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  appearance: none;
 }
 
 .star svg {
@@ -331,6 +336,11 @@ display:none;
   top: 16px;
   right: 48px;
   cursor: pointer;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  appearance: none;
 }
 
 .pin-div svg {
@@ -652,9 +662,15 @@ body { background: var(--neutral-50); }
 #form[data-form="grid"] .Note:nth-of-type(3n + 1) { background:#f0f3eb; }
 #form[data-form="grid"] .Note:nth-of-type(3n + 2) { background:#fbf0e9; }
 #form[data-form="grid"] .Note:nth-of-type(3n) { background:#f1eff5; }
+#form[data-form="list"] .Note:nth-of-type(3n + 1) { background:#f0f3eb; }
+#form[data-form="list"] .Note:nth-of-type(3n + 2) { background:#fbf0e9; }
+#form[data-form="list"] .Note:nth-of-type(3n) { background:#f1eff5; }
 :root[data-theme="dark"] #form[data-form="grid"] .Note:nth-of-type(3n + 1) { background:#242c23; }
 :root[data-theme="dark"] #form[data-form="grid"] .Note:nth-of-type(3n + 2) { background:#30251f; }
 :root[data-theme="dark"] #form[data-form="grid"] .Note:nth-of-type(3n) { background:#28262e; }
+:root[data-theme="dark"] #form[data-form="list"] .Note:nth-of-type(3n + 1) { background:#242c23; }
+:root[data-theme="dark"] #form[data-form="list"] .Note:nth-of-type(3n + 2) { background:#30251f; }
+:root[data-theme="dark"] #form[data-form="list"] .Note:nth-of-type(3n) { background:#28262e; }
 
 .title-note { padding-right: 48px; font-family: Georgia, 'Times New Roman', serif; font-size: 19px; font-weight: 500; letter-spacing: -.25px; line-height: 1.35; }
 .content-note { font-size: 13px; line-height: 1.7; color: var(--neutral-600); -webkit-line-clamp: 4; }
@@ -892,7 +908,7 @@ body { background: var(--neutral-50); }
 #form[data-form="grid"] .Note { padding:17px 18px 14px; border-radius:11px; box-shadow:none; }
 #form[data-form="grid"] .Note:hover { border-color:var(--neutral-300); box-shadow:var(--shadow-sm); transform:translateY(-2px); }
 #form[data-form="grid"] .title-note { padding-right:64px; font-size:17px; }
-#form[data-form="grid"] .content-note { max-width:60ch; font-size:12px; line-height:1.6; -webkit-line-clamp:3; }
+#form[data-form="grid"] .content-note { width:100%; max-width:none; font-size:12px; line-height:1.6; -webkit-line-clamp:3; }
 #form[data-form="grid"] #createdAt-note { padding-top:7px; font-size:10px; }
 #form[data-form="grid"] .star,
 #form[data-form="grid"] .pin-div { top:12px; right:12px; width:28px; height:28px; }
@@ -954,5 +970,37 @@ body { background: var(--neutral-50); }
 }
 :root[data-theme="dark"] .dashboard-new-note { background:#a9be91; color:#1d2b21; }
 :root[data-theme="dark"] .dashboard-new-note:hover { background:#bfd0a9; }
+
+/* Row view keeps note text, date, and actions in stable columns. */
+.Note[data-form="list"] {
+  display:grid;
+  grid-template-columns:minmax(145px,.85fr) minmax(0,2fr) minmax(105px,.65fr) max-content;
+  align-items:center;
+  column-gap:clamp(12px,1.6vw,20px);
+  row-gap:0;
+  min-height:78px;
+  padding:13px 18px;
+}
+.Note[data-form="list"] .title-note { min-width:0; padding:0; margin:0; }
+.Note[data-form="list"] .content-note { min-width:0; width:100%; margin:0; -webkit-line-clamp:1; }
+.Note[data-form="list"] #createdAt-note { width:100%; min-width:0; margin:0; padding:0; text-align:right; white-space:nowrap; line-height:1.4; }
+.Note[data-form="list"] .note-actions {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  width:max-content;
+  min-height:32px;
+  margin:0;
+  padding:0;
+  border:0;
+}
+.Note[data-form="list"] .note-view-more { min-height:32px; display:inline-flex; align-items:center; justify-content:center; padding:0 9px; }
+.Note[data-form="list"] .star,
+.Note[data-form="list"] .pin-div { position:static; inset:auto; flex:0 0 32px; width:32px; height:32px; margin:0; }
+.Note[data-form="list"] .dustbin { position:static; flex:0 0 32px; width:32px; height:32px; margin:0; }
+.Note .star:focus-visible,.Note .pin-div:focus-visible { z-index:2; outline:3px solid var(--accent-400); outline-offset:3px; }
+.Note .star:disabled,.Note .pin-div:disabled { opacity:.6; cursor:wait; }
+:root[data-theme="dark"] .Note .star:focus-visible,:root[data-theme="dark"] .Note .pin-div:focus-visible { outline-color:#e2c69e; }
 
 </style>

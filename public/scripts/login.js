@@ -5,6 +5,10 @@ const passwordInput = document.getElementById("password-input");
 const message = document.getElementById("login-message");
 const eyeButton = document.querySelector("#eye");
 const eyeIcon = eyeButton.querySelector("i");
+if (new URLSearchParams(window.location.search).get("passwordReset") === "1") {
+    message.textContent = "Your password has been updated. Log in with your new password.";
+    message.className = "auth-message success";
+}
 eyeButton.addEventListener("click", () => {
     const showingPassword = passwordInput.type === "password";
     eyeIcon.classList.toggle("fa-eye-slash", !showingPassword);

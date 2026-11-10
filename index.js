@@ -17,6 +17,8 @@ const recover = require("./routes/recover");
 const signout = require("./routes/signout");
 const emailVerify = require("./routes/emailVerification");
 const exportNotes = require("./routes/exportNotes");
+const forgotPassword = require("./routes/forgotPassword");
+const changePassword = require("./routes/changePassword");
 
 const NoteModel = require("./models/notes");
 const cookieParser = require("cookie-parser");
@@ -56,6 +58,8 @@ app.get("/stylesheets/:filename", (req, res) => {
 });
 
 app.use(emailVerify);
+app.use(forgotPassword);
+app.use(changePassword);
 app.use(signout);
 app.use(viewNote);
 app.use(viewNoteTrash);
