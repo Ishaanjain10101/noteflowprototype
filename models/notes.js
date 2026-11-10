@@ -30,7 +30,12 @@ const noteSchema = new mongoose.Schema({
     recentlyDeleted:{
         type:Boolean,
         default:false
+    },
+    noteExpires:{
+        type:Date,
     }
 },{timestamps:true});
+
+noteSchema.index({noteExpires:1},{expireAfterSeconds : 0});
 
 module.exports = mongoose.model("Note",noteSchema);
